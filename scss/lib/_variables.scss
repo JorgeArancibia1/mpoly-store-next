@@ -1,0 +1,93 @@
+// Commons variables
+$font-size-xxxs: 3px;
+$font-size-xxs: 5px;
+$font-size-xs: 9px;
+$font-size-xms: 11px;
+$font-size-s: 14px;
+$font-size-m: 20px;
+$font-size-l: 24px;
+$font-size-xl: 30px;
+$font-size-xxl: 40px;
+
+$line-height: 26px;
+
+$margin-xxs: 5px;
+$margin-xs: 10px;
+$margin-s: 15px;
+$margin-m: 20px;
+$margin-l: 25px;
+$margin-xl: 30px;
+$margin-xxl: 35px;
+
+$padding-xxxs: 3px;
+$padding-xxs: 5px;
+$padding-xs: 10px;
+$padding-s: 15px;
+$padding-m: 20px;
+$padding-l: 25px;
+$padding-xl: 30px;
+$padding-xxl: 35px;
+
+$total-height-view: 100vh;
+$total-width-view: 100vw;
+
+$width-10: 10%;
+$width-20: 20%;
+$width-30: 30%;
+$width-40: 40%;
+$width-50: 50%;
+$width-60: 60%;
+$width-70: 70%;
+$width-80: 80%;
+$width-90: 90%;
+$width-100: 100%;
+
+$z-index-xxs: 5;
+$z-index-xs: 10;
+$z-index-s: 15;
+$z-index-m: 20;
+$z-index-l: 25;
+$z-index-xl: 30;
+$z-index-xxl: 35;
+
+$total-parent: $width-100;
+
+//Common variables
+$common-padding-bottom: 62px;
+
+// Navbar variables
+$navbar-font-size-items: $font-size-m;
+$navbar-font-weight: bold;
+$navbar-height: 62px;
+$nabvar-line-height-items: $line-height;
+$navbar-logo: 324px;
+$navbar-width-items: 165px;
+
+// Header Home variable
+$header-home-height: 500px;
+$header-home-height-card: 256px;
+$header-home-width-card: 500px;
+$header-home-padding-horizontal: 25px;
+$header-home-padding-vertical: 30px;
+$header-home-title: $font-size-xl;
+$header-home-font-size: $font-size-l;
+$header-home-line-height: $line-height;
+
+// buttons variables
+$btn-padding-y: 6px;
+$button-radius: 20px;
+$button-font-size: $font-size-s;
+$button-font-family: 'Lato';
+$button-font-weight: bold;
+$button-line-height: $line-height;
+$button-min-width: 150px;
+
+// Dropdown variables
+$dropdown-bottom-position: -112px;
+
+// Header Projects variables
+$header-projects-height: 165px;
+
+// Footer variables
+$footer-height: 328px;
+$footer-margin-bottom-copyright: 48px;
