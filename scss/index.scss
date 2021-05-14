@@ -1,10 +1,14 @@
 // BASE
 
 @import './base/reset';
+@import './lib/variables';
 @import './base/global';
 @import './base/fonts';
 @import './lib/colors';
-@import './lib/variables';
 
 // LAYOUTS
-@import '../layouts/BasicLayout/BasicLayout.scss';
+@import '../layouts/BasicLayout/basicLayout';
+
+//COMPONENTS
+
+@import '../components/Header/header'

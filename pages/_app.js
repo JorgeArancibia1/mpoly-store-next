@@ -1,5 +1,4 @@
 import '../scss/index.scss'
-import '../scss/base/global.scss'
 import 'semantic-ui-css/semantic.min.css'
 
 export default function MyApp({ Component, pageProps }) {

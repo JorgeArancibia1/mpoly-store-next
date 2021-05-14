@@ -1,12 +1,14 @@
 import { Container } from "semantic-ui-react"
+import { Header } from "../../components/Header/Header"
 
 const BasicLayout = ({children}) => {
   return (
-    <Container fuild className="basic-layout">
-      <Container className="container-children">
+    <div className="basic-layout">
+      <Header/>
+      <div className="container-children">
         { children }
-      </Container>
-    </Container>
+      </div>
+    </div>
   )
 }
 
