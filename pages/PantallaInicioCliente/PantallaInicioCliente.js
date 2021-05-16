@@ -1,6 +1,6 @@
-import ContainerCards from "../components/ContainerCards";
-import Navbar from "../components/Navbar";
-import BasicLayout from "../layouts/BasicLayout";
+import ContainerCards from "../../components/ContainerCards";
+import Navbar from "../../components/Navbar";
+import BasicLayout from "../../layouts/BasicLayout";
 
 const PantallaInicioCliente = () => {
 	return (
@@ -15,4 +15,4 @@ const PantallaInicioCliente = () => {
 	);
 };
 
-export default PantallaInicioCliente;
+export default PantallaInicioCliente

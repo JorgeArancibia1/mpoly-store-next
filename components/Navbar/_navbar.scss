@@ -1,0 +1,68 @@
+.navbar {
+  background-color: $grey-light-color;
+  display: flex;
+  width: $width-navbar;
+  height: $height-navbar;
+}
+
+.container-list {
+  display: flex;
+  justify-content: space-between;
+  width: 80vw;
+  font-family: Arial, Helvetica, sans-serif;;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 36px;
+  align-items: center;
+}
+
+.list {
+  display: flex;
+  justify-content: space-between;
+}
+
+li {
+  list-style: none;
+  margin: 0 50px;
+  font-size: $font-size-m;
+}
+
+.right-nav {
+  display: flex;
+  align-items: center;
+  position: relative;
+  margin-right: 20px;
+}
+
+.right-nav input {
+  background-color: #e9ecf5;
+  border-color: E9ECF5;
+  border-radius: 15px;
+  position: relative;
+  height: 40px;
+}
+
+.lupa {
+  position: absolute;
+  left: 125px;
+  bottom: 15px;
+}
+
+.carrito-nav {
+  margin-left: 23px;
+}
+
+.container-search {
+  position: absolute;
+  right: 32px;
+}
+
+.MuiInput-inputTypeSearch {
+  background-color: transparent !important;
+  padding: 0 !important;
+  transition: 0.1s;
+
+  &:focus {
+    width: 250px;
+  }
+}

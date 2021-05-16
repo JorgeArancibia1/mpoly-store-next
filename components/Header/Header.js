@@ -1,18 +1,26 @@
-export const Header = () => {
+import Avatar from "../Avatar"
+import Link from "next/link"
+import ExitToAppIcon from "@material-ui/icons/ExitToApp";
+
+let avatarcito = 'https://res.cloudinary.com/dacsggoox/image/upload/v1620600640/avatar_rkcnm2.png'
+
+const Header = () => {
   return (
     <section className="barra-title">
       <div className="principal-title">
-        <a href="/">
-          <h1 className="title-header">MPoly Store</h1>
-        </a>
+        <Link href="/">
+          <h1 className="title-header pointer">MPoly Store</h1>
+        </Link>
       </div>
       <div className="container-right-head">
-        <img className="img-avatar" src="https://res.cloudinary.com/dacsggoox/image/upload/v1620600640/avatar_rkcnm2.png" alt="avatar" width="40" height="40" />
+        <Avatar configClass= "img-avatar" img= { avatarcito } alt= "avatar del header" width= "40" height= "40"/> 
         <h3 className="name">Jorge Arancibia</h3>
-        <a href="./login.html">
-          <img className="img-cerrar-sesion" src="https://res.cloudinary.com/initial-cloud/image/upload/v1620877235/cerrar-sesion_m9zayq.png" width="50" alt="Cerrar-sesion" />
-        </a>
+        <Link href="./login.html">
+          <ExitToAppIcon  style={{ color: 'white', marginRight: 20, fontSize: 30 }}/>
+        </Link>
       </div>
     </section>
-  )
-}
+  );
+};
+
+export default Header

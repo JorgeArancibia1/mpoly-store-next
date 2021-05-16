@@ -1,5 +1,4 @@
 // BASE
-
 @import './base/reset';
 @import './lib/variables';
 @import './base/global';
@@ -9,6 +8,12 @@
 // LAYOUTS
 @import '../layouts/BasicLayout/basicLayout';
 
-//COMPONENTS
+//VIEWS
+@import '../pages/PantallaInicioCliente/pantallaInicioCliente';
 
-@import '../components/Header/header'
+//COMPONENTS
+@import '../components/Header/header';
+@import '../components/Navbar/navbar';
+@import '../components/ContainerCards/containerCards';
+@import '../components/Card/card';
+@import '../components/Button/button';

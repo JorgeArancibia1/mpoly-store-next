@@ -50,44 +50,59 @@ $z-index-l: 25;
 $z-index-xl: 30;
 $z-index-xxl: 35;
 
-$total-parent: $width-100;
+// CUSTOM VARIABLES
+
+$border-radius: 15px;
+
+//NAVBAR
+$height-navbar: 80px;
+$width-navbar: 100vw;
+
+//HEADER
+
+$width-header: 100vw;
+$height-header: 80px;
+$font-header: Arial;
+
+$container-section-products-width: 100vw;
+$font-section-products: Roboto;
 
 //Common variables
-$common-padding-bottom: 62px;
+// $common-padding-bottom: 62px;
 
-// Navbar variables
-$navbar-font-size-items: $font-size-m;
-$navbar-font-weight: bold;
-$navbar-height: 62px;
-$nabvar-line-height-items: $line-height;
-$navbar-logo: 324px;
-$navbar-width-items: 165px;
+// // Navbar variables
+// $navbar-font-size-items: $font-size-m;
+// $navbar-font-weight: bold;
+// $navbar-height: 62px;
+// $nabvar-line-height-items: $line-height;
+// $navbar-logo: 324px;
+// $navbar-width-items: 165px;
 
-// Header Home variable
-$header-home-height: 500px;
-$header-home-height-card: 256px;
-$header-home-width-card: 500px;
-$header-home-padding-horizontal: 25px;
-$header-home-padding-vertical: 30px;
-$header-home-title: $font-size-xl;
-$header-home-font-size: $font-size-l;
-$header-home-line-height: $line-height;
+// // Header Home variable
+// $header-home-height: 500px;
+// $header-home-height-card: 256px;
+// $header-home-width-card: 500px;
+// $header-home-padding-horizontal: 25px;
+// $header-home-padding-vertical: 30px;
+// $header-home-title: $font-size-xl;
+// $header-home-font-size: $font-size-l;
+// $header-home-line-height: $line-height;
 
-// buttons variables
-$btn-padding-y: 6px;
-$button-radius: 20px;
-$button-font-size: $font-size-s;
-$button-font-family: 'Lato';
-$button-font-weight: bold;
-$button-line-height: $line-height;
-$button-min-width: 150px;
+// // buttons variables
+// $btn-padding-y: 6px;
+// $button-radius: 20px;
+// $button-font-size: $font-size-s;
+// $button-font-family: 'Lato';
+// $button-font-weight: bold;
+// $button-line-height: $line-height;
+// $button-min-width: 150px;
 
-// Dropdown variables
-$dropdown-bottom-position: -112px;
+// // Dropdown variables
+// $dropdown-bottom-position: -112px;
 
-// Header Projects variables
-$header-projects-height: 165px;
+// // Header Projects variables
+// $header-projects-height: 165px;
 
-// Footer variables
-$footer-height: 328px;
-$footer-margin-bottom-copyright: 48px;
+// // Footer variables
+// $footer-height: 328px;
+// $footer-margin-bottom-copyright: 48px;

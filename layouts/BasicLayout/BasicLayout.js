@@ -1,5 +1,5 @@
-import { Container } from "semantic-ui-react"
-import { Header } from "../../components/Header/Header"
+// import { Container } from "semantic-ui-react"
+import Header from "../../components/Header"
 
 const BasicLayout = ({children}) => {
   return (
