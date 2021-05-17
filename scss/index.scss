@@ -10,6 +10,7 @@
 
 //VIEWS
 @import '../pages/PantallaInicioCliente/pantallaInicioCliente';
+@import '../pages/Registro/registro';
 
 //COMPONENTS
 @import '../components/Header/header';
@@ -17,3 +18,5 @@
 @import '../components/ContainerCards/containerCards';
 @import '../components/Card/card';
 @import '../components/Button/button';
+@import '../components/Modal/BasicModal/BasicModal.scss';
+@import '../components/Soporte/soporte';

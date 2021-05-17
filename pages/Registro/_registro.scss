@@ -1,0 +1,92 @@
+body{
+  margin: 0;
+  padding: 0;
+  background: #E9ECF5;
+}
+
+.section1 {
+  height: 30vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.section2 {
+  height: 50vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.container-form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.container-inputs {
+  width: 70%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.container-inputs div {
+  margin: 1px;
+  height: 6vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.campos-botones{
+  border: 1px solid #000000;
+  border-radius: 8px;
+  background: #CCD6EB;
+  height: 40px;
+}
+
+.crear-cuenta{
+  border: 1px solid #000000;
+  border-radius: 21px;
+  background: #A3C3D9;
+  height: 35px;
+  width: 100px;
+  margin: 35px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.section3 {
+  height: 20vh;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.soporte {
+  margin: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.soporte-text1 {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.soporte-text2 {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+// .soporte.completo {
+//   margin: ;
+// }
+
