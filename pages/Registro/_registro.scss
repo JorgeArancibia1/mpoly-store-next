@@ -26,7 +26,7 @@ body{
 }
 
 .container-inputs {
-  width: 70%;
+  width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -34,30 +34,30 @@ body{
 }
 
 .container-inputs div {
-  margin: 1px;
-  height: 6vh;
+  margin: 1px 0px;
+  // height: 6vh;
   display: flex;
   justify-content: center;
-  align-items: center;
 }
 
 .campos-botones{
-  border: 1px solid #000000;
-  border-radius: 8px;
-  background: #CCD6EB;
-  height: 40px;
+  // border: 1px solid #000000;
+  // border-radius: 8px;
+  // background: #CCD6EB;
+  // height: 40px;
 }
 
 .crear-cuenta{
-  border: 1px solid #000000;
-  border-radius: 21px;
-  background: #A3C3D9;
-  height: 35px;
-  width: 100px;
-  margin: 35px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  // border: 1px solid #000000;
+  // border-radius: 21px;
+  // background: #A3C3D9;
+  // color: #fff;
+  // height: 35px;
+  // width: 100px;
+  // margin: 35px;
+  // display: flex;
+  // justify-content: center;
+  // align-items: center;
 }
 
 .section3 {

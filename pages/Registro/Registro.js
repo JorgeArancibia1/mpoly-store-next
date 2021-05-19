@@ -1,13 +1,26 @@
-import { useState } from 'react';
 import Avatar from '../../components/Avatar';
 import BasicModal from '../../components/Modal/BasicModal/BasicModal';
 import Soporte from '../../components/Soporte/Soporte';
+import { useState } from 'react';
+import { useFormik } from 'formik';
+import * as Yup from "yup";
+import { initialValues } from '../../utils/initialValues';
+import { Form, Button } from 'semantic-ui-react';
+import { validationSchema } from '../../utils/validationSchema';
 
 const Registro = () => {
 
   const [showModal, setShowModal] = useState(false)
 
   const onShowModal = () => setShowModal(true)
+
+  const formik = useFormik({
+    initialValues: initialValues(),
+    validationSchema:  Yup.object(validationSchema()),
+    onSubmit: (formData) => {
+      console.log(formData);
+    }
+  })
 
   return (
     <>
@@ -16,43 +29,43 @@ const Registro = () => {
       </section>
 
       <section className="section2">
-        <form className="container-form" action="">
+        <Form className="container-form" onSubmit={formik.handleSubmit}>
           <div className="container-inputs">
             <div>
-              <input className="campos-botones" type="text" placeholder="Nombre" />
-              <input className="campos-botones" type="text" placeholder="Apellido Paterno" />
-              <input className="campos-botones" type="text" placeholder="Apellido Materno" />
+              <Form.Input type="text" name="name" placeholder="Nombre" onChange={formik.handleChange} error={formik.errors.name} />
+              <Form.Input type="text" name="lastname" placeholder="Apellido Paterno" onChange={formik.handleChange} error={formik.errors.lastname} />
+              <Form.Input type="text" placeholder="Apellido Materno" />
             </div>
             <div>
-              <input className="campos-botones" type="text" placeholder="RUT" maxLength="9"/>
-              <input className="campos-botones" type="number" placeholder="Número telefónico" />
-              <input className="campos-botones" type="text" placeholder="Región" />
+              <Form.Input type="text" placeholder="RUT"/>
+              <Form.Input type="number" placeholder="Número telefónico" />
+              <Form.Input type="text" placeholder="Región" />
             </div>
             <div>
-              <input className="campos-botones" type="text" placeholder="Ciudad" />
-              <input className="campos-botones" type="text" placeholder="Comuna" />
-              <input className="campos-botones" type="text" placeholder="Pasaje" />
+              <Form.Input type="text" placeholder="Ciudad" />
+              <Form.Input type="text" placeholder="Comuna" />
+              <Form.Input type="text" placeholder="Pasaje" />
             </div>
             <div>
-              <input className="campos-botones" type="text" placeholder="Número domicilio" />
-              <input className="campos-botones" type="text" placeholder="Tipo de vivienda" />
-              <input className="campos-botones" type="text" placeholder="Torre" />
+              <Form.Input type="text" placeholder="Número domicilio" />
+              <Form.Input type="text" placeholder="Tipo de vivienda" />
+              <Form.Input type="text" placeholder="Torre" />
             </div>
             <div>
-              <input className="campos-botones" type="text" placeholder="Piso" />
-              <input className="campos-botones" type="text" placeholder="Número depto" />
-              <input className="campos-botones" type="text" placeholder="Correo electrónico" />
+              <Form.Input type="text" placeholder="Piso" />
+              <Form.Input type="text" placeholder="Número depto" />
+              <Form.Input type="text" placeholder="Correo electrónico" />
             </div>
             <div>
-              <input className="campos-botones" type="password" placeholder="Contraseña" />
-              <input className="campos-botones" type="password" placeholder="Confirmar Contraseña" />
+              <Form.Input type="password" placeholder="Contraseña" />
+              <Form.Input type="password" placeholder="Confirmar Contraseña" />
             </div>
           </div>
 
           <div>
-            <input className="crear-cuenta pointer" type="button" value="Crear Cuenta" onClick={onShowModal} />
+            <Button className="crear-cuenta pointer" type="submit" >Crear cuenta</Button>
           </div>
-        </form>
+        </Form>
       </section>
       <BasicModal show={showModal} setShowModal={setShowModal} title="Crear cuenta" size="small">
         <h2>Su cuenta ha sido creada exitosamente</h2>
@@ -64,3 +77,5 @@ const Registro = () => {
 }
 
 export default Registro
+
+// onClick={onShowModal}  => Esto es para llamar al modal
