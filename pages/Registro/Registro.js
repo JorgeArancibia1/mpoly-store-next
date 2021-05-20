@@ -67,6 +67,7 @@ const Registro = () => {
           </div>
         </Form>
       </section>
+      
       <BasicModal show={showModal} setShowModal={setShowModal} title="Crear cuenta" size="small">
         <h2>Su cuenta ha sido creada exitosamente</h2>
       </BasicModal>
