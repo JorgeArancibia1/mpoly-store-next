@@ -8,9 +8,11 @@
 // LAYOUTS
 @import '../layouts/BasicLayout/basicLayout';
 
-//VIEWS
+//PAGES
 @import '../pages/PantallaInicioCliente/pantallaInicioCliente';
 @import '../pages/Registro/registro';
+@import '../pages/TipoCompra/tipoCompra';
+@import '../pages/MetodoPago/metodoPago';
 
 //COMPONENTS
 @import '../components/Header/header';
@@ -20,3 +22,4 @@
 @import '../components/Button/button';
 @import '../components/Modal/BasicModal/BasicModal.scss';
 @import '../components/Soporte/soporte';
+@import '../components/BoxPago/boxPago';
