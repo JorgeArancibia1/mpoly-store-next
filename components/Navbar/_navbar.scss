@@ -66,3 +66,7 @@ li {
     width: 250px;
   }
 }
+
+#__next > div > div > section > div.right-nav > svg:nth-child(3) {
+  cursor: pointer;
+}

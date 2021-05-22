@@ -15,7 +15,7 @@ const Header = () => {
       <div className="container-right-head">
         <Avatar configClass= "img-avatar" img= { avatarcito } alt= "avatar del header" width= "40" height= "40"/> 
         <h3 className="name">Jorge Arancibia</h3>
-        <Link href="./login.html">
+        <Link href="./Login">
           <ExitToAppIcon  style={{ color: 'white', marginRight: 20, fontSize: 30 }}/>
         </Link>
       </div>

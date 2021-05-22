@@ -13,13 +13,19 @@
 @import '../pages/Registro/registro';
 @import '../pages/TipoCompra/tipoCompra';
 @import '../pages/MetodoPago/metodoPago';
+@import '../pages/CarritoCompra/carritoCompra';
+@import '../pages/DetalleProducto/detalleProducto';
+@import '../pages/Tipo/tipo';
 
-//COMPONENTS
+// COMPONENTS
 @import '../components/Header/header';
 @import '../components/Navbar/navbar';
 @import '../components/ContainerCards/containerCards';
 @import '../components/Card/card';
 @import '../components/Button/button';
-@import '../components/Modal/BasicModal/BasicModal.scss';
+@import '../components/Modal/BasicModal/basicModal';
 @import '../components/Soporte/soporte';
 @import '../components/BoxPago/boxPago';
+@import '../components/CarritoItem/carritoItem';
+@import '../components/Detalle/detalle';
+@import '../components/DetalleTipo/detalleTipo';

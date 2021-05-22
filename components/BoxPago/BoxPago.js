@@ -1,4 +1,4 @@
-import Button from "../Button/Button";
+import Button from "../Button";
 import Imagen from "../Imagen";
 
 const BoxPago = ({

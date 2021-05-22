@@ -249,7 +249,7 @@
 	display: flex;
 }
 
-.container-flex-center {
+.container-flex-center, .cfc {
 	display: flex;
 	justify-content: center;
 	align-items: center;
@@ -261,7 +261,13 @@
 	align-items: center;
 }
 
-.flex-d-c {
+.fdsi {
+	display: flex;
+	justify-content: flex-end;
+	align-items: start;
+}
+
+.flex-d-c, .fdc {
 	flex-direction: column;
 }
 
@@ -281,10 +287,46 @@
 	border: 1px solid red;
 }
 
+.b-blue {
+	border: 1px solid blue;
+}
+
+.b-green {
+	border: 1px solid green;
+}
+
+.b-black {
+	border: 1px solid black;
+}
+
 .br {
 	border-radius: $border-radius;
 }
 
 .d-flex {
 	display: flex;
+}
+
+.h {
+	height: 50px;
+}
+
+.hv-10 {
+	height: 10vh;
+}
+
+.hv-15 {
+	height: 15vh;
+}
+
+.hv-20 {
+	height: 20vh;
+}
+
+.hv-100 {
+	height: 100vh;
+} 
+
+.w-100 {
+	width: 100%;
 }

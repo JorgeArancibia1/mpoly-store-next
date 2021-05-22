@@ -7,20 +7,20 @@ const Navbar = () => {
     <section className="navbar">
       <div className="container-list">
         <ul className="list">
-          <Link href="/">
-            <li>Ofertas</li>
+          <Link href="/Tipo">
+            <li className="pointer">Ofertas</li>
           </Link>
-          <Link href="./mujer.html">
-            <li>Mujer</li>
+          <Link href="./Tipo">
+            <li className="pointer">Mujer</li>
           </Link>
-          <Link href="./hombre.html">
-            <li>Hombre</li>
+          <Link href="./Tipo">
+            <li className="pointer">Hombre</li>
           </Link>
-          <Link href="./niños.html">
-            <li>Niños</li>
+          <Link href="./Tipo">
+            <li className="pointer">Niños</li>
           </Link>
-          <Link href="./unisex.html">
-            <li>Unisex</li>
+          <Link href="./Tipo">
+            <li className="pointer">Unisex</li>
           </Link>
         </ul>
       </div>
@@ -28,7 +28,7 @@ const Navbar = () => {
         {/* <input type="text" /> */}
           <Input type="search" />
           <Search style={{ marginRight: 40 }}/>
-        <Link href="./carritoDeCompras.html">
+        <Link href="./CarritoCompra">
           <ShoppingCart style={{ marginRight: 20, fontSize: 30 }} />
         </Link>
       </div>

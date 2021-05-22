@@ -1,13 +1,27 @@
-const Button = (props) => {
+
+const Button = (
+  {
+    isButton,
+    children
+  }
+) => {
 
   return (
-    <a href="/" className="botoncito">
-      Agregar
+    <>
       {
-        props.iconitoButton && 
-        <img src={ props.iconitoButton } width="20px" alt="carrito" />
+        isButton ?
+          (
+            <button className="botoncito d-flex container-flex-center">
+              {children}
+            </button>
+          ) : (
+            <a href="/" className="botoncito d-flex container-flex-center">
+              {children}
+            </a>
+          )
       }
-    </a>
+    </>
   )
 }
-export default Button
+
+export default Button;

@@ -1,0 +1,22 @@
+body{
+  background-color: #E9ECF5;
+}
+.title{
+  font-size: $font-size-xl;
+  font-family: Arial, Helvetica, sans-serif;
+}
+.container-titulo-carrito{
+  height: 10vh;
+}
+
+.boton-confirmar-compra{
+  background-color: #A3C3D9;
+  border-radius: 47.5px;
+  font-size: $font-size-l;
+  height: 60px;
+  width: 300px;
+}
+
+.container-page-carrito {
+  height: calc(100vh - 80px);
+}

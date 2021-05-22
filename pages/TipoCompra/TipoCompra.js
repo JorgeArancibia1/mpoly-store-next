@@ -1,9 +1,12 @@
+import Titulo from "../../components/Titulo"
+import BasicLayout from "../../layouts/BasicLayout/BasicLayout"
 
 const TipoCompra = () => {
   return (
-    <div>
-      <h1>Hola desde tipo compras</h1>
-    </div>
+    <BasicLayout>
+      <Titulo titulo="Seleccione el tipo de compra" />
+
+    </BasicLayout>
   )
 }
 

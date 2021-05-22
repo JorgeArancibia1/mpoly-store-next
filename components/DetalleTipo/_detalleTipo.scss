@@ -1,0 +1,25 @@
+.tipo-ropa-ordenada{
+  height: 90%;
+  width: 90%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+}
+
+.tipo-imagenes {
+  height: 70vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.title{
+  font-size: $font-size-xl;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.container-titulo-tipo{
+  height: 10vh;
+}
