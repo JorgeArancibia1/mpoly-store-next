@@ -7,6 +7,8 @@ import * as Yup from "yup";
 import { initialValues } from '../../utils/initialValues';
 import { Form, Button } from 'semantic-ui-react';
 import { validationSchema } from '../../utils/validationSchema';
+import { registerAPI } from '../../api/user';
+
 
 const Registro = () => {
 
@@ -19,6 +21,7 @@ const Registro = () => {
     validationSchema:  Yup.object(validationSchema()),
     onSubmit: (formData) => {
       console.log(formData);
+      registerAPI(formData);
     }
   })
 
@@ -32,33 +35,34 @@ const Registro = () => {
         <Form className="container-form" onSubmit={formik.handleSubmit}>
           <div className="container-inputs">
             <div>
-              <Form.Input type="text" name="name" placeholder="Nombre" onChange={formik.handleChange} error={formik.errors.name} />
-              <Form.Input type="text" name="lastname" placeholder="Apellido Paterno" onChange={formik.handleChange} error={formik.errors.lastname} />
-              <Form.Input type="text" placeholder="Apellido Materno" />
+              <Form.Input type="text" name="name" placeholder="Nombre" onChange={formik.handleChange} error={formik.errors.name}/>
+              <Form.Input type="text" name="lastname" placeholder="Apellido Paterno" onChange={formik.handleChange} error={formik.errors.lastname}/>
+              <Form.Input type="text" name="lastname2" placeholder="Apellido Materno" onChange={formik.handleChange}/>
             </div>
             <div>
-              <Form.Input type="text" placeholder="RUT"/>
-              <Form.Input type="number" placeholder="Número telefónico" />
-              <Form.Input type="text" placeholder="Región" />
+              <Form.Input type="text" name="RUT" placeholder="RUT" onChange={formik.handleChange}/>
+              <Form.Input type="number" name="phoneNumber" placeholder="Número telefónico" onChange={formik.handleChange}/>
+              <Form.Input type="text" name="region" placeholder="Región"  onChange={formik.handleChange}/>
             </div>
             <div>
-              <Form.Input type="text" placeholder="Ciudad" />
-              <Form.Input type="text" placeholder="Comuna" />
-              <Form.Input type="text" placeholder="Pasaje" />
+              <Form.Input type="text" name="city" placeholder="Ciudad" onChange={formik.handleChange}/>
+              <Form.Input type="text" name="comuna" placeholder="Comuna" onChange={formik.handleChange}/>
+              <Form.Input type="text" name="street" placeholder="Pasaje" onChange={formik.handleChange}/>
             </div>
             <div>
-              <Form.Input type="text" placeholder="Número domicilio" />
-              <Form.Input type="text" placeholder="Tipo de vivienda" />
-              <Form.Input type="text" placeholder="Torre" />
+              <Form.Input type="text" name="homeNumber" placeholder="Número domicilio" onChange={formik.handleChange}/>
+              <Form.Input type="text" name="homeType" placeholder="Tipo de vivienda" onChange={formik.handleChange}/>
+              <Form.Input type="text" name="block" placeholder="Torre" onChange={formik.handleChange}/>
             </div>
             <div>
-              <Form.Input type="text" placeholder="Piso" />
-              <Form.Input type="text" placeholder="Número depto" />
-              <Form.Input type="text" placeholder="Correo electrónico" />
+              <Form.Input type="text" name="floor" placeholder="Piso" onChange={formik.handleChange}/>
+              <Form.Input type="text" name="nDepto" placeholder="Número depto" onChange={formik.handleChange}/>
+              <Form.Input type="text" name="email" placeholder="Correo electrónico" onChange={formik.handleChange}/>
             </div>
             <div>
-              <Form.Input type="password" placeholder="Contraseña" />
-              <Form.Input type="password" placeholder="Confirmar Contraseña" />
+              <Form.Input type="text" name="username" placeholder="Nombre de usuario" onChange={formik.handleChange}/>
+              <Form.Input type="password" name="password" placeholder="Contraseña" onChange={formik.handleChange}/>
+              <Form.Input type="password" placeholder="Confirmar Contraseña"/>
             </div>
           </div>
 
