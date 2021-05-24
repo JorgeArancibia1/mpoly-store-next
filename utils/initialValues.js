@@ -12,10 +12,10 @@ export const initialValues = () => {
     city: "",
     comuna: "",
     street: "",
-    homeNumber: "",
+    homeNumber: 0,
     homeType: "",
     block: "",
-    nDepto: "",
+    nDepto: 0,
     floor: ""
   }
 }

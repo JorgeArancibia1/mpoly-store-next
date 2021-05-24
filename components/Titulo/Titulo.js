@@ -1,6 +1,6 @@
-const Titulo = ({titulo = "Título"}) => {
+const Titulo = ({titulo = "Título", clase="cfc hv-15"}) => {
 	return (
-		<section className="cfc hv-15">
+		<section className={clase}>
 			<h2 className="">{titulo}</h2>
 		</section>
 	);

@@ -267,6 +267,12 @@
 	align-items: flex-start;
 }
 
+.fdfe {
+	display: flex;
+	justify-content: flex-end;
+	align-items: flex-start;
+}
+
 .flex-d-c, .fdc {
 	flex-direction: column;
 }
@@ -299,6 +305,10 @@
 	border: 1px solid black;
 }
 
+.b-purple {
+	border: 1px solid purple;
+}
+
 .br {
 	border-radius: $border-radius;
 }
@@ -309,6 +319,10 @@
 
 .h {
 	height: 50px;
+}
+
+.hv-5 {
+	height: 5vh;
 }
 
 .hv-10 {
@@ -325,7 +339,11 @@
 
 .hv-100 {
 	height: 100vh;
-} 
+}
+
+.hv-100-header {
+	height: calc(100vh - 80px);
+}
 
 .w-100 {
 	width: 100%;

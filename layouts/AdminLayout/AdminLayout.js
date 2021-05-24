@@ -1,13 +1,17 @@
+import Header from "../../components/Header/Header";
+import Sidebar from "../../components/Sidebar";
 
-const AdminLayout = () => {
-  return (
-    <div className="admin-layout">
-      <Header />
-      <div className="container-children-admin">
-        { children }
-      </div>
-    </div>
-  )
-}
+const AdminLayout = ({ children }) => {
+	return (
+		<div className="basic-layout">
+			<Header />
+			{/* <Navbar /> */}
+			<section className="section-container-box-admin border hv-100-header d-flex cfc">
+				<Sidebar />
+				<div className="right-admin b-purple">{children}</div>
+			</section>
+		</div>
+	);
+};
 
-export default AdminLayout
+export default AdminLayout;

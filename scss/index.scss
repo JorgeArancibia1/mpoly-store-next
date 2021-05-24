@@ -7,8 +7,9 @@
 
 // LAYOUTS
 @import '../layouts/BasicLayout/basicLayout';
+@import '../layouts/AdminLayout/AdminLayout';
 
-//PAGES
+//CLIENT PAGES
 @import '../pages/PantallaInicioCliente/pantallaInicioCliente';
 @import '../pages/Registro/registro';
 @import '../pages/TipoCompra/tipoCompra';
@@ -18,7 +19,11 @@
 @import '../pages/Tipo/tipo';
 @import '../pages/Login/login';
 
-// COMPONENTS
+// ADMIN PAGES
+
+@import '../pages/ProductosVendidos/productosVendidos';
+
+// CLIENT COMPONENTS
 @import '../components/Header/header';
 @import '../components/Navbar/navbar';
 @import '../components/ContainerCards/containerCards';
@@ -31,3 +36,10 @@
 @import '../components/Detalle/detalle';
 @import '../components/DetalleTipo/detalleTipo';
 @import '../components/Boxes/boxes';
+
+// ADMIN COMPONENTS
+
+@import '../components/Sidebar/sidebar';
+@import '../components/Table/table';
+@import '../components/Intermedio/intermedio';
+
