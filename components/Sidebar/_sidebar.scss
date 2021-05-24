@@ -1,4 +1,14 @@
 .vertical {
   width: $width-sidebar-admin;
   height: $height-sidebar-admin;
+  background-color: $style-pink;
+}
+
+.container-links-sidebar {
+
+}
+
+.sidebar-link{
+  margin-top: 2em;
+  color: $white-color;
 }

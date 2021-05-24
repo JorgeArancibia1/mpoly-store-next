@@ -2,6 +2,8 @@ import Table from "../../components/Table";
 import AdminLayout from "../../layouts/AdminLayout";
 import Intermedio from "../../components/Intermedio";
 import Titulo from "../../components/Titulo/Titulo";
+import SemanticTable from "../../components/SemanticTable";
+import MaterialTabla from "../../components/MaterialTabla";
 
 const ProductosVendidos = () => {
 	return (
@@ -10,7 +12,9 @@ const ProductosVendidos = () => {
 
 			<Intermedio />
 
-			<Table />
+			{/* <Table /> */}
+			{/* <SemanticTable /> */}
+			<MaterialTabla />
 
 		</AdminLayout>
 	);

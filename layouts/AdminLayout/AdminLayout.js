@@ -6,7 +6,7 @@ const AdminLayout = ({ children }) => {
 		<div className="basic-layout">
 			<Header />
 			{/* <Navbar /> */}
-			<section className="section-container-box-admin border hv-100-header d-flex cfc">
+			<section className="section-container-box-admin hv-100-header d-flex cfc">
 				<Sidebar />
 				<div className="right-admin b-purple">{children}</div>
 			</section>

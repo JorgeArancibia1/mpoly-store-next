@@ -1,14 +1,26 @@
+import Link from "next/link"
+
 const Sidebar = () => {
 	return (
-		<div class="vertical b-black">
-			<div class="cuadro">Productos Vendidos</div>
-			<div class="cuadro productos-disponibles">Productos Disponibles</div>
-			<div class="cuadro">Stock</div>
-			<div class="cuadro">Estadísticas</div>
-			<div class="cuadro">Información de Usuarios</div>
-			<div class="cuadro">Información de Comunas</div>
-			<div class="cuadro">Gestion de Compras</div>
-		</div>
+		<section className="vertical">
+				<ul className="container-links-sidebar">
+					<Link href="/Tipo">
+						<li className="pointer sidebar-link">Productos Disponibles</li>
+					</Link>
+					<Link href="./Tipo">
+						<li className="pointer sidebar-link">Productos Vendidos</li>
+					</Link>
+					<Link href="./Tipo">
+						<li className="pointer sidebar-link">Stock</li>
+					</Link>
+					<Link href="./Tipo">
+						<li className="pointer sidebar-link">Estadísticas</li>
+					</Link>
+					<Link href="./Tipo">
+						<li className="pointer sidebar-link">Gestión de compras</li>
+					</Link>
+				</ul>
+		</section>
 	);
 };
 
