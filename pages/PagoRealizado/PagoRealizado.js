@@ -8,7 +8,7 @@ const PagoRealizado = () => {
 
     <div className="container-pago-realizado">
       <Header />
-      <section className="pago-realizado center border container">
+      <section className="pago-realizado center container">
         <Titulo titulo="Para finalizar tu compra realiza una transferencia" />
         <h3>Banco Estado</h3>
         <h3>Cuenta RUT</h3>
