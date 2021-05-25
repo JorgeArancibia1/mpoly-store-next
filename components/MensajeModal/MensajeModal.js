@@ -5,8 +5,8 @@ export const MensajeModal = ({
 }) => {
   return (
     <div className="container-modal">
-      <p className=".fs-m">{titulo}</p>
-      <p className=".fs-s">{mensaje}</p>
+      <p >{titulo}</p>
+      <p >{mensaje}</p>
       <Button variant="contained" color="primary">
         Si
       </Button>
