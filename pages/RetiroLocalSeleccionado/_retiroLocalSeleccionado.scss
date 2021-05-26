@@ -1,12 +1,19 @@
 .retiro-en-local{
-  height: 75vh;
-  width: 80vw;
-  
+  background-color: #CCD6EB;
+  border-radius: 52px;
+  height: 70vh;
+  width: 94vw;
+  margin: 55px;
+}
+
+.container-retiro-local{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .local{
-  background-color: green;
-  height: 50vh;
+  height: 40vh;
   width: 50vw;
 }
 

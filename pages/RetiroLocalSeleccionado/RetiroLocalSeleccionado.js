@@ -8,16 +8,16 @@ const RetiroLocalSeleccionado = () => {
   return (
     <div>
       <Header />
-      <section className="retiro-en-local border cfc flex-d-c m-4">
+      <section className="retiro-en-local cfc flex-d-c m-4">
         <div className="container-retiro-local">
           <ArrowBackIcon />
           <Titulo titulo="Has seleccionado retiro en local" />
-          <div className="local p-4 fs-m">
-            <p>Dirección: Los Guanteletes #461</p>
-            <p>Comuna: Puente Alto</p>
-            <p>Persona a Cargo: Javiera Fernández</p>
-            <p>Lugar de referencia aproximado: Metro Protectora de la Infancia</p>
-          </div>
+        </div>
+        <div className="local p-4 fs-m">
+          <p>Dirección: Los Guanteletes #461</p>
+          <p>Comuna: Puente Alto</p>
+          <p>Persona a Cargo: Javiera Fernández</p>
+          <p>Lugar de referencia aproximado: Metro Protectora de la Infancia</p>
         </div>
         <Button isButton>Aceptar y Pagar</Button>
       </section>
