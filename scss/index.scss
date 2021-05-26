@@ -19,10 +19,12 @@
 @import '../pages/Tipo/tipo';
 @import '../pages/Login/login';
 @import '../pages/RetiroLocalSeleccionado/retiroLocalSeleccionado';
+@import '../pages/PagoRealizado/pagoRealizado';
 
 // ADMIN PAGES
 
 @import '../pages/ProductosVendidos/productosVendidos';
+@import '../pages/ProductosDisponibles/productosDisponibles';
 
 // CLIENT COMPONENTS
 @import '../components/Header/header';
@@ -31,12 +33,14 @@
 @import '../components/Card/card';
 @import '../components/Button/button';
 @import '../components/Modal/BasicModal/basicModal';
+@import '../components/Modal/DinamicModal/dinamicModal';
 @import '../components/Soporte/soporte';
 @import '../components/BoxPago/boxPago';
 @import '../components/CarritoItem/carritoItem';
 @import '../components/Detalle/detalle';
 @import '../components/DetalleTipo/detalleTipo';
 @import '../components/Boxes/boxes';
+@import'../components/MensajeModal/mensajeModal';
 
 // ADMIN COMPONENTS
 

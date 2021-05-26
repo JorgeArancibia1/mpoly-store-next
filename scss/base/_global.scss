@@ -273,6 +273,18 @@
 	align-items: flex-start;
 }
 
+.fsb {
+	display: flex;
+	justify-content: space-between;
+	align-items: flex-start;
+}
+
+.fsa {
+	display: flex;
+	justify-content: space-around;
+	align-items: flex-start;
+}
+
 .flex-d-c, .fdc {
 	flex-direction: column;
 }
