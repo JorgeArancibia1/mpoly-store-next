@@ -25,6 +25,7 @@ const MaterialTabla = ({
 	],
 	subtitle = "Subtitulo",
 	iconButton = "delete",
+	iconButton2 = "edit",
 	textoFlotante = "Texto flotante",
 	isEditable = false,
 	funcion = (event, rowData) =>
@@ -43,7 +44,7 @@ const MaterialTabla = ({
 
 
 isEditable && objectActions.push({
-  icon: "edit",
+  icon: iconButton2 ,
   tooltip: "Editar",
   onClick: abrirModal,
 })

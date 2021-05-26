@@ -4,7 +4,7 @@ import { Button } from 'semantic-ui-react';
 import BasicModal from '../Modal/BasicModal';
 import DinamicModal from '../Modal/DinamicModal/DinamicModal';
 
-const Intermedio = ({abrirModal=false, mostrar=false, setShowModal,  isCreate=true}) => {
+const Intermedio = ({abrirModal=false, mostrar=false, setShowModal,  isCreate=false}) => {
 	return (
 		<div className={isCreate? "fsb" : "interior fdfe"}>
 			{
