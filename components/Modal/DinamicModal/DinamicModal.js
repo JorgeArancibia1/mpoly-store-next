@@ -1,5 +1,6 @@
 import React from 'react'
 
+
 const DinamicModal = ({isEditable=false}) => {
   return (
     <div>
