@@ -1,7 +1,9 @@
 import MaterialTable from "material-table";
+import BasicModal from "../Modal/BasicModal";
+import DinamicModal from "../Modal/DinamicModal/DinamicModal";
 
 const MaterialTabla = ({
-	data = [{ producto: "Polera", marca: "Nike", talla: "L", precio: 5990 }],
+	data = [{ producto: "Polera", marca: "Nike", talla: "L", precio: 5990 },{ producto: "Polera", marca: "Nike", talla: "L", precio: 5990 }],
 	columnas = [
 		{
 			title: "Producto",
@@ -27,6 +29,9 @@ const MaterialTabla = ({
 	isEditable = false,
 	funcion = (event, rowData) =>
 		alert("Has seleccionado => " + rowData.producto),
+	abrirModal,
+	setShowModal,
+	mostrar
 }) => {
 	let objectActions = [
     {
@@ -40,7 +45,7 @@ const MaterialTabla = ({
 isEditable && objectActions.push({
   icon: "edit",
   tooltip: "Editar",
-  onClick: () => {},
+  onClick: abrirModal,
 })
 
 console.log(objectActions)
@@ -58,6 +63,9 @@ console.log(objectActions)
 					},
 				}}
 			/>
+			<BasicModal show={mostrar} setShowModal={setShowModal} title="Crear cuenta" size="small">
+				<DinamicModal isEditable />
+      </BasicModal>
 		</div>
 	);
 };

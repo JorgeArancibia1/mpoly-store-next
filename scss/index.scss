@@ -23,6 +23,7 @@
 // ADMIN PAGES
 
 @import '../pages/ProductosVendidos/productosVendidos';
+@import '../pages/ProductosDisponibles/productosDisponibles';
 
 // CLIENT COMPONENTS
 @import '../components/Header/header';
@@ -31,6 +32,7 @@
 @import '../components/Card/card';
 @import '../components/Button/button';
 @import '../components/Modal/BasicModal/basicModal';
+@import '../components/Modal/DinamicModal/dinamicModal';
 @import '../components/Soporte/soporte';
 @import '../components/BoxPago/boxPago';
 @import '../components/CarritoItem/carritoItem';

@@ -1,3 +1,4 @@
+import { Button } from 'semantic-ui-react';
 
 export const MensajeModal = ({
   titulo="Modal Compra",
