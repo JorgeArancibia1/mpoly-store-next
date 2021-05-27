@@ -12,7 +12,7 @@ const Intermedio = ({abrirModal=false, mostrar=false, setShowModal,  isCreate=fa
 					<Button color="primary" onClick={abrirModal}>Crear Producto</Button>
 			}
 			<SyncIcon />
-			<BasicModal show={mostrar} setShowModal={setShowModal} title="Crear cuenta" size="small">
+			<BasicModal show={mostrar} setShowModal={setShowModal} title="Crear Producto" size="small">
 				<DinamicModal />
       </BasicModal>
 		</div>

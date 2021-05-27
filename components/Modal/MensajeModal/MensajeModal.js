@@ -1,12 +1,10 @@
 import { Button } from 'semantic-ui-react';
 
 export const MensajeModal = ({
-  titulo="Modal Compra",
-  mensaje="¿Seguro que desea rechazar?"
+  mensaje="¿Seguro que desea borrar?"
 }) => {
   return (
     <div className="container-modal">
-      <p >{titulo}</p>
       <p >{mensaje}</p>
       <Button variant="contained" color="primary">
         Si

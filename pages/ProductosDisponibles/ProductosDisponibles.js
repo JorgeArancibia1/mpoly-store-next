@@ -1,22 +1,32 @@
 import { useState } from "react"
 import Intermedio from "../../components/Intermedio"
 import MaterialTabla from "../../components/MaterialTabla"
-import BasicModal from "../../components/Modal/BasicModal/BasicModal"
 import Titulo from "../../components/Titulo/Titulo"
 import AdminLayout from "../../layouts/AdminLayout"
 
 const ProductosDisponibles = () => {
 
-  const [showModal, setShowModal] = useState(false);
+  const [showModalCrete, setShowModalCreate] = useState(false);
+  const [showModalEdit, setShowModalEdit] = useState(false);
+  const [showModalDelete, setShowModalDelete] = useState(false);
 
-  const onShowModal = () => setShowModal(true)
+  const onShowModalCreate = () => setShowModalCreate(true)
+  const onShowModalEdit = () => setShowModalEdit(true)
+  const onShowModalDelete = () => setShowModalDelete(true)
 
   return (
     <AdminLayout >
       <Titulo titulo="Productos vendidos" clase="cfc hv-5" />
-      <Intermedio mostrar={showModal} setShowModal={setShowModal} abrirModal={onShowModal} />
-      <MaterialTabla isEditable mostrar={showModal} setShowModal={setShowModal} abrirModal={onShowModal}/>
-      
+      <Intermedio isCreate mostrar={showModalCrete} setShowModal={setShowModalCreate} abrirModal={onShowModalCreate} />
+      <MaterialTabla
+        isEditable
+        mostrar={showModalEdit}
+        setShowModal={setShowModalEdit}
+        abrirModal={onShowModalEdit}
+        abrirDelete={onShowModalDelete}
+        mostrarDelete={showModalDelete}
+        setShowModalDelete={setShowModalDelete}
+      />
     </AdminLayout>
 
   )

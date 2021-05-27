@@ -2,7 +2,7 @@ import { Icon, Modal } from "semantic-ui-react";
 
 const BasicModal = (props) => {
 
-  const { show, setShowModal, title, children, ...rest } = props
+  const { show, setShowModal, title="Crear cuenta", children, ...rest } = props
 
   const onClose = () => setShowModal(false)
 

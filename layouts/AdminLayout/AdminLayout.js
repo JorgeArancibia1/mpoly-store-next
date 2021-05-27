@@ -8,7 +8,7 @@ const AdminLayout = ({ children }) => {
 			{/* <Navbar /> */}
 			<section className="section-container-box-admin hv-100-header d-flex cfc">
 				<Sidebar />
-				<div className="right-admin b-purple">{children}</div>
+				<div className="right-admin">{children}</div>
 			</section>
 		</div>
 	);
