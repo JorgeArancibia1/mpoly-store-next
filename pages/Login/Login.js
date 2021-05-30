@@ -6,11 +6,15 @@ import { useFormik } from 'formik';
 import { loginApi } from "../../api/user";
 import { useState } from "react";
 import { toast } from "react-toastify";
+import useAuth from "../../hooks/useAuth";
 
 
 const Login = () => {
 
   const [loading, setLoading] = useState(false);
+
+	const auth = useAuth() || '';
+	console.log(auth)
 
   const formik = useFormik({
     initialValues: initialLoginValues(),
@@ -53,7 +57,7 @@ const Login = () => {
 						error= { formik.errors.password }
 					/>
           <div className="cfc">
-					  <Button type="submit" color="primary" className="" loading={loading} >Entrar</Button>
+					  <Button type="submit" color="blue" className="" loading={loading} >Entrar</Button>
           </div>
 				</Form>
 			</section>
