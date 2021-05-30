@@ -11,9 +11,10 @@ import useAuth from "../../hooks/useAuth";
 
 const Login = () => {
 
-  const [loading, setLoading] = useState(false);
+  const [ loading, setLoading ] = useState(false);
+	const { auth, login } = useAuth();
 
-	const auth = useAuth() || '';
+	// const auth = useAuth();
 	console.log(auth)
 
   const formik = useFormik({
@@ -24,6 +25,7 @@ const Login = () => {
 			setLoading(true);
 			const response = await loginApi(formData);
 			if (response?.jwt) {
+				login(response.jwt)
 				console.log("Login OK")
 				//Reedireccion a la página de cliente
 			} else {

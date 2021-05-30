@@ -9,9 +9,12 @@ import { Form, Button } from 'semantic-ui-react';
 import { validationSchema } from '../../utils/validationSchema';
 import { registerAPI } from '../../api/user';
 import { toast } from 'react-toastify';
+import { useRouter } from 'next/router';
 
 
 const Registro = () => {
+
+	const router = useRouter();
 
   const [showModal, setShowModal] = useState(false);
 
@@ -36,6 +39,10 @@ const Registro = () => {
       setLoading(false);
     }
   })
+
+  const redirectLogin = () => {
+    router.push("/Login")
+  }
 
   return (
     <>
@@ -79,7 +86,8 @@ const Registro = () => {
           </div>
 
           <div>
-            <Button className="crear-cuenta pointer" type="submit" loading={loading}>Crear cuenta</Button>
+            <Button color="blue" className="crear-cuenta pointer" type="submit" loading={loading}>Crear cuenta</Button>
+            <Button type="button" onClick={redirectLogin}>Ir a iniciar sesión</Button>
           </div>
         </Form>
       </section>
