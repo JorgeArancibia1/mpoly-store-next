@@ -16,6 +16,7 @@ export default function MyApp({ Component, pageProps }) {
 
 	console.log(auth);
 
+	// ESTO OBTIENE EL TOKEN DEL LOCALSTORAGE SI ES QUE EXISTE, LUEGO SETEA EN EL ESTADO "auth" EL TOKEN Y EL TOKEN COMO SI FUERA EL ID DEL USUARIO.
 	useEffect(() => {
 		const token = getToken();
 		console.log(token);
@@ -47,10 +48,7 @@ export default function MyApp({ Component, pageProps }) {
 		}
 	}
 
-	// const isLogged = () => {
-	// 	return auth ? true : false
-	// }
-
+	// ESTE ES EL ESTADO QUE SE ACCEDE GLOBALMENTE DESDE CUALQUIER COMPONENTE
 	const authData = useMemo(
 		() => ({
 			auth,

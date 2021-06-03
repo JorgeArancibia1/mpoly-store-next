@@ -7,12 +7,15 @@ import { loginApi } from "../../api/user";
 import { useState } from "react";
 import { toast } from "react-toastify";
 import useAuth from "../../hooks/useAuth";
+import { useRouter } from "next/router";
 
 
 const Login = () => {
 
   const [ loading, setLoading ] = useState(false);
 	const { auth, login } = useAuth();
+	const router = useRouter();
+
 
 	// const auth = useAuth();
 	console.log(auth)
@@ -26,8 +29,8 @@ const Login = () => {
 			const response = await loginApi(formData);
 			if (response?.jwt) {
 				login(response.jwt)
-				console.log("Login OK")
 				//Reedireccion a la página de cliente
+				router.push("/")
 			} else {
 				toast.error("El usuario o la contraseña son incorrectos")
 			}

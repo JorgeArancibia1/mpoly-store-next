@@ -1,8 +1,12 @@
+import { useState, useEffect } from "react";
 import ContainerCards from "../components/ContainerCards";
 import Navbar from "../components/Navbar";
 import BasicLayout from "../layouts/BasicLayout";
 
 const PantallaInicioCliente = () => {
+
+
+
 	return (
 		<BasicLayout>
 			<Navbar />
