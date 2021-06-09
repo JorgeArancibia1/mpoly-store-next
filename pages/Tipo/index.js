@@ -1,1 +1,1 @@
-export { default } from './Tipo'
+// export { default } from './Tipo'
