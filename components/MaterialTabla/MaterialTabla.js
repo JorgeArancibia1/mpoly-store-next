@@ -54,7 +54,7 @@ isEditable && objectActions.push({
   onClick: abrirModal, // Funcion que ejecuta
 })
 
-console.log(objectActions)
+// console.log(objectActions)
 	return (
 		<div>
 			<MaterialTable

@@ -9,7 +9,7 @@ const Intermedio = ({abrirModal=false, mostrar=false, setShowModal,  isCreate=fa
 		<div className={isCreate? "fsb" : "interior fdfe"}>
 			{
 				isCreate &&
-					<Button color="primary" onClick={abrirModal}>Crear Producto</Button>
+					<Button color="blue" onClick={abrirModal}>Crear Producto</Button>
 			}
 			<SyncIcon />
 			<BasicModal show={mostrar} setShowModal={setShowModal} title="Crear Producto" size="small">

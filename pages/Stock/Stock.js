@@ -7,11 +7,11 @@ const Stock = () => {
 		<AdminLayout>
 			<div className="container-tipo-stock fsa m-1 cfc">
 				<p className="fs-m">Seleccionar Tipo:</p>
-				<Button color="primary">Mujer</Button>
-				<Button color="primary">Hombre</Button>
-				<Button color="primary">Niños</Button>
-				<Button color="primary">Unisex</Button>
-				<Button color="primary">Todos</Button>
+				<Button color="blue">Mujer</Button>
+				<Button color="blue">Hombre</Button>
+				<Button color="blue">Niños</Button>
+				<Button color="blue">Unisex</Button>
+				<Button color="blue">Todos</Button>
 			</div>
 			<section className="container-stock">
 				<div className="Tipo-Linea-1 center fsb">
