@@ -8,7 +8,7 @@ const Card = ({
 }) => {
   return (
     <div className="card">
-      <Imagen alto="120" ancho="120" estilo="mb-2 br"/>
+      <Imagen fuente={imagen} alto="120" ancho="120" estilo="mb-2 br"/>
       <div className="footer-card">
         <Button size="small" variant="outlined" endIcon={<ShoppingCartIcon />}>
           Agregar al carrito
