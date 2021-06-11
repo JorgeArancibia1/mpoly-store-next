@@ -4,11 +4,11 @@ import DinamicModal from "../Modal/DinamicModal/DinamicModal";
 import MensajeModal from "../Modal/MensajeModal/MensajeModal";
 
 const MaterialTabla = ({
-	data = [{ producto: "Polera", marca: "Nike", talla: "L", precio: 5990 },{ producto: "Polera", marca: "Nike", talla: "L", precio: 5990 }],
+	data = [{ nombre: "Polera", marca: "Nike", talla: "L", precio: 5990 },{ nombre: "Polera", marca: "Nike", talla: "L", precio: 5990 }],
 	columnas = [
 		{
-			title: "Producto",
-			field: "producto",
+			title: "Nombre",
+			field: "nombre",
 		},
 		{
 			title: "Marca",
@@ -36,7 +36,8 @@ const MaterialTabla = ({
 	setShowModal,
 	mostrar,
 	mostrarDelete,
-	setShowModalDelete
+	setShowModalDelete,
+	row
 }) => {
 	// Este es el boton de eliminar de la tabla
 	let objectActions = [
@@ -54,10 +55,11 @@ isEditable && objectActions.push({
   onClick: abrirModal, // Funcion que ejecuta
 })
 
-// console.log(objectActions)
 	return (
 		<div>
-			<MaterialTable
+			{
+				data===null?"Cargando": 
+				<MaterialTable
 				columns={columnas}
 				data={data}
 				title={subtitle}
@@ -69,8 +71,9 @@ isEditable && objectActions.push({
 					},
 				}}
 			/>
+			}
 			<BasicModal show={mostrar} setShowModal={setShowModal} title="Editar producto" size="small">
-				<DinamicModal isEditable />
+				<DinamicModal isEditable row={row} />
       </BasicModal>
 			<BasicModal show={mostrarDelete} setShowModal={setShowModalDelete} title="Borrar producto" size="small">
 				<MensajeModal mensaje="¿Seguro que desea borrar este producto?" isEditable />

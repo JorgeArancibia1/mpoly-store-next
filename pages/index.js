@@ -55,7 +55,7 @@ const productos = [
 const PantallaInicioCliente = () => {
 
 	const [products, setproducts] = useState(null);
-	console.log(products);
+	// console.log(products);
 
 	useEffect(() => {
 		(async () => {
@@ -72,9 +72,9 @@ const PantallaInicioCliente = () => {
 	const polerones = products?.filter(producto => producto.categoria.nombreCategoria.includes('Polerones') && producto.estado.includes('Disponible'))
 	const vestidos = products?.filter(producto => producto.categoria.nombreCategoria.includes('Vestidos') && producto.estado.includes('Disponible'))
 
-	console.log('Poleras => ', poleras)
-	console.log('Polerones => ', polerones)
-	console.log('Vestidos => ', vestidos)
+	// console.log('Poleras => ', poleras)
+	// console.log('Polerones => ', polerones)
+	// console.log('Vestidos => ', vestidos)
 
 	return (
 		<BasicLayout>

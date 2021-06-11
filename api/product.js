@@ -7,6 +7,7 @@ export const getLastProducts = async(limit) => {
     const url = `${BASE_PATH}/products?${limitItems}&${sortItems}`;
     const response = await fetch(url);
     const result = await response.json();
+    console.log ("resultadoProductos => ", result)
     return result;
   } catch (error) {
     console.error(`Ha ocurrido un error al traer los últimos productos: ${error}`)
