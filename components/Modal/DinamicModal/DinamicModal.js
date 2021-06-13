@@ -4,9 +4,13 @@ import { useFormik } from "formik";
 import * as Yup from "yup";
 import { toast } from "react-toastify";
 import { useState } from "react";
+import { crearProducto, editarProducto } from "../../../api/product";
+import useAuth from "../../../hooks/useAuth";
 
 const DinamicModal = ({ isEditable = false, row }) => {
+	const { logout } = useAuth();
   console.log("dinamicRow =>", row);
+	const [loading, setLoading] = useState(false);
 
   const categoriaOpciones = [
     {
@@ -45,34 +49,77 @@ const DinamicModal = ({ isEditable = false, row }) => {
   ];
 
   const [categoria, setCategoria] = useState({
-    nombreCategoria: "",
+		nombreCategoria: "",
   });
-  const [tipo, setTipo] = useState("Hombre");
+
+	const switchFunction = async(formData, isEditable = false) => {
+		if (isEditable) { // Editar
+			// formData.categoria = categoria
+			// formData.tipo = tipo
+			console.log("formData => ", formData);
+			const response = await editarProducto(row.id, formData, logout);
+			console.log("dinamicRespons => ",response)
+			if (!response) {
+				toast.error("Error al actualizar");
+			} else if (response.statusCode === 403) {
+				toast.error("No tiene los permisos para poder actualizar")
+			} else {
+				toast.success("Producto actualizado")
+			}
+		} else { // Crear
+			console.log("formData2 => ", formData);
+			const response = await crearProducto( formData, logout);
+			console.log("dinamicRespons => ",response)
+			if (!response) {
+				toast.error("Error al crear");
+			} else if (response.statusCode === 403) {
+				toast.error("No tiene los permisos para poder crear")
+			} else {
+				toast.success("Producto creado")
+			}
+		}
+	}
+	
+		const { nombreCategoria } = categoria
+		const [tipo, setTipo] = useState({
+			nombreTipo: "",
+		});
+		const { nombreTipo } = tipo
 
   const formik = useFormik({
-    initialValues: {
+    initialValues: isEditable ? {
       nombre: row.nombre,
       marca: row.marca,
       color: row.color,
       talla: row.talla,
-      tipo: "",
-      categoria: categoria,
       precio: row.precio,
-    },
+    } : {
+      nombre: "",
+      marca: "",
+      color: "",
+      talla: "",
+      precio: "",
+    } ,
     validationSchema: Yup.object(validationSchema()),
-    onSubmit: async (formData) => {
-      console.log("formData => ", formData);
+    onSubmit: async (formData, e) => {
+			setLoading(true);
+			isEditable ? switchFunction( formData,isEditable ): switchFunction( formData )
+			setLoading(false)
     },
   });
 
 
   const handleChangeCategory = (e, { value }) => {
-    setCategoria({ nombreCategoria: value })
+     setCategoria({ nombreCategoria: value })
     console.log("value =>", value)
+    console.log("categoria =>", categoria)
   }
-  
 
-  const { nombreCategoria } = categoria
+	const handleChangeTipo = (e, { value }) => {
+		setTipo({ nombreTipo: value })
+ }
+
+	console.log("categoriaout =>", categoria)
 
   return (
     <div>
@@ -115,12 +162,12 @@ const DinamicModal = ({ isEditable = false, row }) => {
         </Form.Group>
         <Form.Group widths="equal">
           <Dropdown 
-            
+            onChange={handleChangeTipo}
             placeholder="Seleccione Un Tipo"
             fluid
             selection
             options={tipoOpciones}
-         
+						value={nombreTipo}
           />
           <Dropdown
             onChange={handleChangeCategory}
@@ -163,7 +210,7 @@ const DinamicModal = ({ isEditable = false, row }) => {
             <p>Agregar Imagen</p>
           </div>
           <div className="cfc d-flex">
-            <Button type="submit" className="submit">
+            <Button type="submit" className="submit" loading={loading}>
               Aceptar
             </Button>
           </div>

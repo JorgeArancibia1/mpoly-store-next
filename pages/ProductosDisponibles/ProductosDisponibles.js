@@ -20,7 +20,11 @@ const ProductosDisponibles = () => {
 		console.log("event =>", event )
 		console.log("rowData =>", rowData)
 	}
-	const onShowModalDelete = () => setShowModalDelete(true);
+	const onShowModalDelete = (e,rowData) => {
+		setShowModalDelete(true)
+		setRow(rowData)
+	}
+	const onCloseDelete = () => setShowModalDelete(false)
 
 	const [products, setproducts] = useState(null);
 	console.log("productsData => ",products);
@@ -59,6 +63,7 @@ const ProductosDisponibles = () => {
 				abrirDelete={onShowModalDelete}
 				mostrarDelete={showModalDelete}
 				setShowModalDelete={setShowModalDelete}
+				onCloseDelete={onCloseDelete}
 			/>
 		</AdminLayout>
 	);

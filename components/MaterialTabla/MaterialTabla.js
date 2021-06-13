@@ -37,8 +37,10 @@ const MaterialTabla = ({
 	mostrar,
 	mostrarDelete,
 	setShowModalDelete,
-	row
+	row,
+	onCloseDelete
 }) => {
+	console.log("rowtabla",row)
 	// Este es el boton de eliminar de la tabla
 	let objectActions = [
     {
@@ -76,7 +78,7 @@ isEditable && objectActions.push({
 				<DinamicModal isEditable row={row} />
       </BasicModal>
 			<BasicModal show={mostrarDelete} setShowModal={setShowModalDelete} title="Borrar producto" size="small">
-				<MensajeModal mensaje="¿Seguro que desea borrar este producto?" isEditable />
+				<MensajeModal row={row} onCloseDelete={onCloseDelete} mensaje="¿Seguro que desea borrar este producto?" isEditable />
       </BasicModal>
 		</div>
 	);

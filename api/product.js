@@ -1,4 +1,5 @@
 import { BASE_PATH } from "../utils/constans";
+import { authFetch } from "../utils/fetch";
 
 export const getLastProducts = async(limit) => {
   try {
@@ -33,6 +34,82 @@ export const obtenerProductosSegunTipo = async(limit, tipo) => {
     return tipo==='Ofertas' ?filtroOfertas:result;
   } catch (error) {
     console.error(`Ha ocurrido un error al traer los productos segun tipo: ${error}`)
+    return null;
+  }
+}
+
+export const crearProducto = async(producto, logout) => {
+  console.log("resultProduct => ", producto)
+  console.log("resultProduct => ", logout)
+  producto.estado = "Disponible"
+  console.log("result2 => ", producto)
+
+  try {
+    const url = `${BASE_PATH}/products`;
+    const params = {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(producto),
+    };
+    const result = await authFetch(url, params, logout);
+    console.log("resultProduct => ", result)
+    // if (result.statusCode !== 200) throw "Error al crear producto";
+    return result;
+
+
+  } catch (error) {
+    console.error(`Ha ocurrido un error al crear un producto.${error}`)
+    return null;
+  }
+}
+
+export const editarProducto = async(idProduct, producto, logout) => {
+  console.log("resultProduct => ", idProduct)
+  console.log("resultProduct => ", producto)
+  console.log("resultProduct => ", logout)
+  try {
+    const url = `${BASE_PATH}/products/${idProduct}`;
+    const params = {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(producto),
+    };
+    const result = await authFetch(url, params, logout);
+    console.log("resultProduct => ", result)
+    // if (result.statusCode !== 200) throw "Error al crear producto";
+    return result;
+
+
+  } catch (error) {
+    console.error(`Ha ocurrido un error al crear un producto.${error}`)
+    return null;
+  }
+}
+
+export const borrarProducto = async(idProduct) => {
+  console.log("resultProduct => ", idProduct)
+
+  try {
+    const url = `${BASE_PATH}/products/${idProduct}`;
+    const params = {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      // body: JSON.stringify(producto),
+    };
+    const result = await fetch(url, params);
+    console.log("resultProduct => ", result)
+    // if (result.statusCode !== 200) throw "Error al crear producto";
+    return result;
+
+
+  } catch (error) {
+    console.error(`Ha ocurrido un error al crear un producto.${error}`)
     return null;
   }
 }
