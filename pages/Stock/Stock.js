@@ -15,7 +15,8 @@ const Stock = () => {
 		if(selected !== '') {
 			(async () => {
 				setLoading(true);
-				const response = await getLastProducts(15, selected);
+				const response = await getLastProducts(150, selected);
+				console.log(response)
 				if(response.length > 0) {
 					const productsByCategory = {};
 					response.forEach((product) => {
@@ -39,7 +40,7 @@ const Stock = () => {
 	const noFiltro = () => {
 		setFiltradoTipo(products);
 	};
-
+console.log(products)
 	return (
 		<AdminLayout>
 			<div className="container-tipo-stock fsa m-1 cfc">
@@ -52,7 +53,7 @@ const Stock = () => {
 				</Button>
 				<Button color="blue" data-tipo="Niños" onClick={handleSelect}> Niños</Button>
 				<Button color="blue" data-tipo="Unisex" onClick={handleSelect}>Unisex</Button>
-				<Button color="blue" onClick={noFiltro}>Todos</Button>
+				{/* <Button color="blue" onClick={noFiltro}>Todos</Button> */}
 			</div>
 			<section className="container-stock">
 				<div className="Tipo-Linea-1 center fsb">

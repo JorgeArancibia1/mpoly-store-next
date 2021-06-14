@@ -12,10 +12,15 @@ import { size, map } from 'lodash';
 
 const ProductosVendidos = () => {
 	const [showModalDelete, setShowModalDelete] = useState(false);
-
-	const onShowModalDelete = () => setShowModalDelete(true);
-
 	const [products, setproducts] = useState(null);
+	const [row, setRow] = useState({});
+
+	const onShowModalDelete = (e,rowData) => {
+		setShowModalDelete(true)
+		setRow(rowData)
+	}
+
+
 
 	useEffect(() => {
 		(async () => {
@@ -34,9 +39,8 @@ const ProductosVendidos = () => {
 
 			<Intermedio />
 
-			{/* <Table /> */}
-			{/* <SemanticTable /> */}
 			<MaterialTabla
+				row={row}
 			data={products}
 			abrirDelete={onShowModalDelete}
 			mostrarDelete={showModalDelete}

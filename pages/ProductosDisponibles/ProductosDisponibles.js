@@ -46,7 +46,7 @@ const ProductosDisponibles = () => {
 
 	return (
 		<AdminLayout>
-			<Titulo titulo="Productos vendidos" clase="cfc hv-5" />
+			<Titulo titulo="Productos Disponibles" clase="cfc hv-5" />
 			<Intermedio
 				isCreate
 				mostrar={showModalCrete}

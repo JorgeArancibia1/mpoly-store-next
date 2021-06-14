@@ -41,8 +41,8 @@ export const obtenerProductosSegunTipo = async(limit, tipo) => {
 }
 
 export const crearProducto = async(producto, logout) => {
-  console.log("resultProduct => ", producto)
-  console.log("resultProduct => ", logout)
+  console.log("resultCrearProduct => ", producto)
+  console.log("LogoutCrearProducto => ", logout)
   producto.estado = "Disponible"
   console.log("result2 => ", producto)
 
@@ -59,8 +59,6 @@ export const crearProducto = async(producto, logout) => {
     console.log("resultProduct => ", result)
     // if (result.statusCode !== 200) throw "Error al crear producto";
     return result;
-
-
   } catch (error) {
     console.error(`Ha ocurrido un error al crear un producto.${error}`)
     return null;
@@ -68,13 +66,15 @@ export const crearProducto = async(producto, logout) => {
 }
 
 export const editarProducto = async(idProduct, producto, logout) => {
-  console.log("resultProduct => ", idProduct)
-  console.log("resultProduct => ", producto)
-  console.log("resultProduct => ", logout)
+  console.log("idEditarProduct => ", idProduct)
+  console.log("resultEditarProducto => ", producto)
+  console.log("resultLogoutProduct => ", logout)
+  producto.estado = "Disponible"
+
   try {
     const url = `${BASE_PATH}/products/${idProduct}`;
     const params = {
-      method: "POST",
+      method: "PUT",
       headers: {
         "Content-Type": "application/json",
       },
@@ -84,15 +84,13 @@ export const editarProducto = async(idProduct, producto, logout) => {
     console.log("resultProduct => ", result)
     // if (result.statusCode !== 200) throw "Error al crear producto";
     return result;
-
-
   } catch (error) {
     console.error(`Ha ocurrido un error al crear un producto.${error}`)
     return null;
   }
 }
 
-export const borrarProducto = async(idProduct) => {
+export const borrarProducto = async(idProduct, logout) => {
   console.log("resultProduct => ", idProduct)
 
   try {
@@ -104,7 +102,7 @@ export const borrarProducto = async(idProduct) => {
       },
       // body: JSON.stringify(producto),
     };
-    const result = await fetch(url, params);
+    const result = await authFetch(url, params, logout);
     console.log("resultProduct => ", result)
     // if (result.statusCode !== 200) throw "Error al crear producto";
     return result;

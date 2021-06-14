@@ -177,22 +177,6 @@ const DinamicModal = ({ isEditable = false, row }) => {
             options={categoriaOpciones}
             value={nombreCategoria}
           />
-          {/* <Form.Input
-            type="combobox"
-            name="tipo"
-            placeholder="Tipo"
-            onChange={formik.handleChange}
-            value={formik.values.tipo}
-            error={formik.errors.name}
-          />
-          <Form.Input
-            type="combobox"
-            name="categoria"
-            placeholder="Categoria"
-            onChange={formik.handleChange}
-            value={formik.values.categoria}
-            error={formik.errors.name}
-          /> */}
         </Form.Group>
         <Form.Group>
           <Form.Input
