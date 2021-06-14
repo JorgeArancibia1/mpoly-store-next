@@ -7,158 +7,72 @@ import { size, map } from "lodash";
 import { getLastProducts } from "../../api/product";
 
 const Stock = () => {
-	const [products, setproducts] = useState(null);
+	const [products, setProducts] = useState([]);
+	const [loading, setLoading] = useState(true);
 	const [selected, setSelected] = useState("");
-	const [filtradoTipo, setFiltradoTipo] = useState([]);
-	const [count, setCount] = useState(0);
-	// console.log(products);
 
 	useEffect(() => {
-		(async () => {
-			const response = await getLastProducts(15);
-			if (size(response) > 0) {
-				setproducts(response);
-			} else {
-				setproducts([]);
-			}
-		})();
-	}, []);
-
-	useEffect(() => {
-		let filtro = []
-		let categoriasCount;
-			if (selected === "Mujer") {
-				filtro = products?.filter((producto) => producto.tipo.nombreTipo.includes("Mujer") && producto.estado.includes("Disponible"));
-				console.log(filtro)
-
-				const resultCategoriasFiltradas = filtro.reduce((acc,item)=>{
-						console.log(item.categoria)
-						console.log("acc => ",acc)
-						console.log("acc => ",acc)
-					let contadores = []
-					let initialNum =0
-
-					
-
-					if(!acc.includes(item.categoria.nombreCategoria)){
-						
-						acc.push(item.categoria.nombreCategoria);
-					}
-					return acc;
-				},[])
-		
-				console.log(resultCategoriasFiltradas);
-
-				setFiltradoTipo(filtro);
-				 categoriasCount = filtro?.filter(
-					(producto) =>
-						producto.categoria.nombreCategoria.includes("Poleras")
-				);
-			} else if (selected === "Hombre"){
-				filtro = products?.filter((producto) => producto.tipo.nombreTipo.includes("Hombre") && producto.estado.includes("Disponible"));
-				setFiltradoTipo(filtro);
-			} else if (selected === "Niños"){
-				filtro = products?.filter((producto) => producto.tipo.nombreTipo.includes("Niños") && producto.estado.includes("Disponible"));
-				setFiltradoTipo(filtro);
-			} else if (selected === "Unisex"){
-				filtro = products?.filter((producto) => producto.tipo.nombreTipo.includes("Unisex") && producto.estado.includes("Disponible"));
-				setFiltradoTipo(filtro);
-			}
-			console.log(filtro);
-			setCount(size(filtro))
+		if(selected !== '') {
+			(async () => {
+				setLoading(true);
+				const response = await getLastProducts(15, selected);
+				if(response.length > 0) {
+					const productsByCategory = {};
+					response.forEach((product) => {
+						productsByCategory[product.categoria.nombreCategoria] = response.filter(element => element.categoria.nombreCategoria === product.categoria.nombreCategoria)
+					})
+					setProducts(Object.entries(productsByCategory));
+				} else {
+					setProducts([]);
+				}
+				setLoading(false);
+			})();
+		}
+		setLoading(false)
 	}, [selected]);
 
-	// filtrado por categorias
-
-	const polerones = products?.filter(
-		(producto) =>
-			producto.categoria.nombreCategoria.includes("Polerones") &&
-			producto.estado.includes("Disponible")
-	);
-	const vestidos = products?.filter(
-		(producto) =>
-			producto.categoria.nombreCategoria.includes("Vestidos") &&
-			producto.estado.includes("Disponible")
-	);
-
-	//filtrado por tipos
-	const fType = products?.filter(producto => producto.estado.includes('Disponible'))
-
-	console.log("FT",fType)
-	console.log("FP",products)
-
-	const handleSelect = (text) => {
+	const handleSelect = (e) => {
+		const text = e.target.dataset.tipo;
 		setSelected(text);
 	};
 
-	const filtradoMujer = () => {
-		setSelected("Mujer");
-	};
-	const filtradoHombre = () => {
-		setSelected("Hombre");
-		// let filtro = products?.filter((producto) => producto.tipo.nombreTipo.includes("Hombre") && producto.estado.includes("Disponible"));
-		// console.log(filtro);
-		// setFiltradoTipo(filtro);
-	};
-	const filtradoNiño = () => {
-		setSelected("Niños");
-	};
-	const filtradoUnisex = () => {
-		setSelected("Unisex");
-	};
 	const noFiltro = () => {
 		setFiltradoTipo(products);
 	};
-
-	let categoriasView = filtradoTipo.reduce((acc,item)=>{
-	if(!acc.includes(item.categoria.nombreCategoria)){
-		
-		acc.push(item.categoria.nombreCategoria);
-	}
-	return acc;
-},[])
-	console.log(filtradoTipo)
-	console.log(categoriasView)
 
 	return (
 		<AdminLayout>
 			<div className="container-tipo-stock fsa m-1 cfc">
 				<p className="fs-m">Seleccionar Tipo:</p>
-				<Button color="blue" onClick={filtradoMujer}>
+				<Button color="blue" data-tipo="Mujer" onClick={handleSelect}>
 					Mujer
 				</Button>
-				<Button color="blue" onClick={filtradoHombre}>
+				<Button color="blue" data-tipo="Hombre" onClick={handleSelect}>
 					Hombre
 				</Button>
-				<Button color="blue" onClick={filtradoNiño}> Niños</Button>
-				<Button color="blue" onClick={filtradoUnisex}>Unisex</Button>
+				<Button color="blue" data-tipo="Niños" onClick={handleSelect}> Niños</Button>
+				<Button color="blue" data-tipo="Unisex" onClick={handleSelect}>Unisex</Button>
 				<Button color="blue" onClick={noFiltro}>Todos</Button>
 			</div>
 			<section className="container-stock">
 				<div className="Tipo-Linea-1 center fsb">
-					{!products && <Loader active>Cargando Stock</Loader>}
-					{products && size(products) === 0 && (
+					{loading && <Loader active>Cargando Stock</Loader>}
+					{size(products) === 0 && (
 						<div>
 							<h3>No hay productos para mostrar.</h3>
 						</div>
 					)}
-					{size(filtradoTipo) > 0 &&
-						filtradoTipo.map((producto) => {
+					{size(products) > 0 ?
+						products.map((categoria) => {
 							return (
 								<ContadorStock
-									titulo={producto.categoria.nombreCategoria}
-									cantidad={count}
+									titulo={categoria[0]}
+									cantidad={categoria[1].length}
 								/>
 							);
-						})}
-					{/* <ContadorStock titulo="Poleras" cantidad="26" />
-					<ContadorStock titulo="Polerones" cantidad="40" />
-					<ContadorStock titulo="Pantalones" cantidad="16" /> */}
+						}): <p>Debes seleccionar una categoria</p>}
 				</div>
 				<div className="Tipo-Linea-2 center fsb">
-					{/* <ContadorStock titulo="Chaquetas" cantidad="31" />
-					<ContadorStock titulo="Vestidos" cantidad="0" />
-					<ContadorStock titulo="Accesorios" cantidad="7" /> */}
 				</div>
 			</section>
 		</AdminLayout>

@@ -1,11 +1,13 @@
 import { BASE_PATH } from "../utils/constans";
 import { authFetch } from "../utils/fetch";
 
-export const getLastProducts = async(limit) => {
+export const getLastProducts = async(limit, tipo) => {
+  let filter = '';
+  const limitItems = `_limit=${limit}`;
+  const sortItems = "_sort=createdAt:desc";
+  if(tipo) filter = `tipo.nombreTipo=${tipo}`;
+  const url = `${BASE_PATH}/products?${limitItems}&${sortItems}&${filter}`;
   try {
-    const limitItems = `_limit=${limit}`;
-    const sortItems = "_sort=createdAt:desc";
-    const url = `${BASE_PATH}/products?${limitItems}&${sortItems}`;
     const response = await fetch(url);
     const result = await response.json();
     console.log ("resultadoProductos => ", result)
