@@ -113,3 +113,55 @@ export const borrarProducto = async(idProduct, logout) => {
     return null;
   }
 }
+
+export const obtenerVentasPorFecha = async(limit, tipo) => {
+  let filter = '';
+  const limitItems = `_limit=${limit}`;
+  const sortItems = "_sort=createdAt:desc";
+  if(tipo) filter = `tipo.nombreTipo=${tipo}`;
+  const url = `${BASE_PATH}/products?${limitItems}&${sortItems}&${filter}`;
+  try {
+    const response = await fetch(url);
+    const result = await response.json();
+    console.log ("resultadoProductos => ", result)
+    return result;
+  } catch (error) {
+    console.error(`Ha ocurrido un error al traer los últimos productos: ${error}`)
+    return null;
+  }
+}
+
+export const obtenerVendidosPorFecha = async(limit, fechaVenta, categoria ) => {
+  let filter1 = '';
+  let filter2 = '';
+  const limitItems = `_limit=${limit}`;
+  const sortItems = "_sort=createdAt:desc";
+  if(fechaVenta) filter1 = `fechaVenta=${fechaVenta}`;
+  if(categoria) filter2= `categoria.nombreCategoria=${categoria}`;
+  const url = `${BASE_PATH}/products/count?${limitItems}&${sortItems}&${filter1}&${filter2}`;
+  try {
+    const response = await fetch(url);
+    const result = await response.json();
+    console.log ("resultadoProductos => ", result)
+    return result;
+  } catch (error) {
+    console.error(`Ha ocurrido un error al traer los últimos productos: ${error}`)
+    return null;
+  }
+}
+
+export const obtenerVendidos = async(limit ) => {
+  const limitItems = `_limit=${limit}`;
+  const sortItems = "_sort=createdAt:desc";
+  let filter1 = `estado=Vendido`;
+  const url = `${BASE_PATH}/products?${limitItems}&${sortItems}&${filter1}`;
+  try {
+    const response = await fetch(url);
+    const result = await response.json();
+    console.log ("resultadoProductos => ", result)
+    return result;
+  } catch (error) {
+    console.error(`Ha ocurrido un error al traer los últimos productos: ${error}`)
+    return null;
+  }
+}

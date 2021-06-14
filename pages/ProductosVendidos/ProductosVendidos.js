@@ -24,10 +24,12 @@ const ProductosVendidos = () => {
 
 	useEffect(() => {
 		(async () => {
-			const response = await getLastProducts(5);
-			if (size(response) > 0) {
-				console.log ("responseProductosDisponibles => " ,response);
-				setproducts(response)
+			const response = await getLastProducts(15);
+			const productosFiltrados = response?.filter(producto => producto.estado.includes('Vendido'))
+
+			if (size(productosFiltrados) > 0) {
+				console.log ("responseProductosDisponibles => " ,productosFiltrados);
+				setproducts(productosFiltrados)
 			} else {
 				setproducts([]);
 			}
