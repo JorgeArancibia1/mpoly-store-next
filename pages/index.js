@@ -59,7 +59,7 @@ const PantallaInicioCliente = () => {
 
 	useEffect(() => {
 		(async () => {
-			const response = await getLastProducts(5);
+			const response = await getLastProducts(100);
 			if (size(response) > 0) {
 				setproducts(response)
 			} else {
