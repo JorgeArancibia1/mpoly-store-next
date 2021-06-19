@@ -163,5 +163,18 @@ export const obtenerVendidos = async(limit ) => {
   } catch (error) {
     console.error(`Ha ocurrido un error al traer los últimos productos: ${error}`)
     return null;
-  }
+  }  
+}
+
+export const searchProducts = async(title ) => {
+  
+  const url = `${BASE_PATH}/products?_q=${title}`;
+  try {
+    const response = await fetch(url);
+    const result = await response.json();
+    return result;
+  } catch (error) {
+    console.error(`Ha ocurrido un error al buscar productos: ${error}`)
+    return null;
+  }  
 }

@@ -11,7 +11,7 @@ let avatarcito =
 const Header = ({ nameUser = "Jorge Arancibia" }) => {
 	const { logout, auth } = useAuth(); // useAuth devuelve todo lo que hay en authData() de _app.js
 
-	console.log(auth);
+	// console.log(auth);
 
 	return (
 		<section className="barra-title">

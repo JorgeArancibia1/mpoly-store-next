@@ -1,9 +1,22 @@
 import { Search, ShoppingCart } from "@material-ui/icons";
-import { Input } from '@material-ui/core';
+// import { Input } from "@material-ui/core";
 import Link from "next/link";
+import { useRouter } from "next/router";
+import { useEffect } from "react";
+import { Input } from "semantic-ui-react";
+import search from "../../pages/search";
 
-const Navbar = () => {
+const Navbar = ({ searchStr = "", setSearchStr, load=false, setLoad }) => {
+  const router = useRouter();
 
+  useEffect(() => {
+    if(load){
+      router.push(`/search?query=${searchStr}`);
+    }
+    setLoad(true);
+    
+  }, [searchStr])
+  console.log(searchStr);
   return (
     <section className="navbar">
       <div className="container-list">
@@ -27,8 +40,12 @@ const Navbar = () => {
       </div>
       <div className="right-nav">
         {/* <input type="text" /> */}
-          <Input type="search" />
-          <Search style={{ marginRight: 40 }}/>
+        <Input id="search-product"
+          type="search"
+          value={router.query.query}
+          onChange={(_, data) => setSearchStr(data.value)}
+        />
+        <Search style={{ marginRight: 40 }} />
         <Link href="./CarritoCompra">
           <ShoppingCart style={{ marginRight: 20, fontSize: 30 }} />
         </Link>
@@ -37,4 +54,4 @@ const Navbar = () => {
   );
 };
 
-export default Navbar
+export default Navbar;

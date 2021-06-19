@@ -7,7 +7,7 @@ import { size, map } from 'lodash'
 const iconcitoLink = 'https://res.cloudinary.com/initial-cloud/image/upload/v1620870788/carrito_zs5b0x.png'
 
 
-const DetalleTipo = ({ titulo="TITULO", productos}) => {
+const DetalleTipo = ({ titulo="PRODUCTOS", productos}) => {
   // console.log("detalleTipo",productos)
   return (
     <div>
