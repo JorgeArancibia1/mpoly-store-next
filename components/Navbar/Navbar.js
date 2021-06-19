@@ -2,19 +2,26 @@ import { Search, ShoppingCart } from "@material-ui/icons";
 // import { Input } from "@material-ui/core";
 import Link from "next/link";
 import { useRouter } from "next/router";
+import { useState } from "react";
 import { useEffect } from "react";
 import { Input } from "semantic-ui-react";
-import search from "../../pages/search";
 
-const Navbar = ({ searchStr = "", setSearchStr, load=false, setLoad }) => {
+const Navbar = () => {
   const router = useRouter();
+  console.log(load)
+  console.log(setLoad)
+  const [searchStr, setSearchStr] = useState("");
+  const [load, setLoad] = useState(false);
 
   useEffect(() => {
+    console.log("out")
+    console.log(load)
     if(load){
+      console.log("in")
       router.push(`/search?query=${searchStr}`);
     }
     setLoad(true);
-    
+     
   }, [searchStr])
   console.log(searchStr);
   return (

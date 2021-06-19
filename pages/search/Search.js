@@ -9,8 +9,8 @@ import Navbar from "../../components/Navbar/Navbar";
 import BasicLayout from "../../layouts/BasicLayout/BasicLayout";
 
 const search = () => {
-  const [searchStr, setSearchStr] = useState("");
-  const [load, setLoad] = useState(false);
+  // const [searchStr, setSearchStr] = useState("");
+  // const [load, setLoad] = useState(false);
   const [products, setProducts] = useState(null);
   const {query} = useRouter();
  useEffect(() => {
@@ -32,7 +32,7 @@ const search = () => {
   console.log (products)
   return (
     <BasicLayout>
-      <Navbar searchStr={searchStr} setSearchStr={setSearchStr} load={load} setLoad={setLoad} />
+      <Navbar/>
       {!products && <Loader active>Buscando Productos</Loader>}
       {products && size(products) === 0 &&(
         <div>
