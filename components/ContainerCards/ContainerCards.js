@@ -22,7 +22,7 @@ const ContainerCards = ({ title, products }) => {
 						<Card
 							key={producto.id}
 							imagen={producto.imagen}
-							iconito={iconcitoLink}
+							idProduct={producto.id}
 						/>
 					);
 				})}

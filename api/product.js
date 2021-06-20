@@ -178,3 +178,20 @@ export const searchProducts = async(title ) => {
     return null;
   }  
 }
+
+export const obtenerProductoPorId = async(idProduct) => {
+  // const limitItems = `_limit=${limit}`;
+  // const sortItems = "_sort=createdAt:desc";
+  console.log(idProduct)
+  const filter = `id=${idProduct}`
+  const url = `${BASE_PATH}/products?${filter}`;
+  try {
+    const response = await fetch(url);
+    const result = await response.json();
+    // console.log(result)
+    return result;
+  } catch (error) {
+    console.error(`Ha ocurrido un error al traer un producto por su id: ${error}`)
+    return null;
+  }
+}

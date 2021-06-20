@@ -4,15 +4,16 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import { useState } from "react";
 import { useEffect } from "react";
-import { Input } from "semantic-ui-react";
+import { Input, Label } from "semantic-ui-react";
+import useCart from "../../hooks/useCart";
 
 const Navbar = () => {
   const router = useRouter();
-  console.log(load)
-  console.log(setLoad)
+  // console.log(load)
+  // console.log(setLoad)
   const [searchStr, setSearchStr] = useState("");
   const [load, setLoad] = useState(false);
-
+  const{productsCart} = useCart()
   useEffect(() => {
     console.log("out")
     console.log(load)
@@ -56,6 +57,11 @@ const Navbar = () => {
         <Link href="./CarritoCompra">
           <ShoppingCart style={{ marginRight: 20, fontSize: 30 }} />
         </Link>
+        {
+          productsCart > 0 && (
+            <Label color="red" floating circular>{productsCart}</Label>
+          )
+        } 
       </div>
     </section>
   );
