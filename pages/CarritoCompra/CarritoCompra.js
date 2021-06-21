@@ -1,4 +1,4 @@
-import { forEach } from "lodash";
+import { forEach, size } from "lodash";
 import { useRouter } from "next/router";
 import { useEffect } from "react";
 import { useState } from "react";
@@ -6,6 +6,7 @@ import { Button, Loader } from "semantic-ui-react";
 import { obtenerProductoPorId } from "../../api/product";
 import CarritoItem from "../../components/CarritoItem/CarritoItem";
 import Titulo from "../../components/Titulo";
+import useBuy from "../../hooks/useBuy";
 import useCart from "../../hooks/useCart";
 import BasicLayout from "../../layouts/BasicLayout/BasicLayout";
 
@@ -14,19 +15,20 @@ const CarritoCompra = ({
 }) => {
   // console.log(useCart());
   const { getProductsCart } = useCart();
+  const {agregarDetalleCompra} = useBuy();
   const products = getProductsCart();
   const [productsData, setproductsData] = useState([]);
   const [reloadCart, setReloadCart] = useState(false);
   const [totalPrice, setTotalPrice] = useState(0);
 	const router = useRouter();
-  console.log("products => ", products);
-  console.log("productsData => ", productsData);
+  // console.log("products => ", products);
+  // console.log("productsData => ", productsData);
 
   useEffect(() => {
     (async () => {
       const productsTemp = [];
       for await (const product of products) {
-        console.log("product => ", product);
+        // console.log("product => ", product);
         const data = await obtenerProductoPorId(product);
         productsTemp.push(data);
       }
@@ -44,7 +46,26 @@ const CarritoCompra = ({
 			setTotalPrice(precio)
     })();
   }, [reloadCart, productsData]);
-	console.log("total => ", totalPrice)
+	// console.log("total => ", totalPrice)
+
+  const confirmar = ()=> {
+    let totalCompra = totalPrice
+    let cantidadProductosComprados = size(productsData)  
+    let productosAComprar = []
+    forEach(productsData, (product) => {
+      productosAComprar.push(product[0])
+    });
+    let detalleCarrito = {
+      totalCompra,
+      cantidadProductosComprados,
+      productosAComprar
+    }
+    agregarDetalleCompra(detalleCarrito)
+    // console.log(totalCompra)
+    // console.log(cantidadProductosAComprar)
+    // console.log(productosAComprar)
+    router.push("/TipoCompra")
+  }
 
   return (
     <BasicLayout>
@@ -78,7 +99,7 @@ const CarritoCompra = ({
 							totalPrice > 0 && 
 							<div>
 							<h3>Total a Pagar: {totalPrice}</h3>
-              <Button onClick={()=> router.push("/TipoCompra")} isButton>Confirmar Compra</Button>
+              <Button color="blue" onClick={confirmar}>Confirmar Compra</Button>
 							</div>
 							}
             </div>

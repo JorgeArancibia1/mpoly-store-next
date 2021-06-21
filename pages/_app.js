@@ -4,19 +4,27 @@ import "react-toastify/dist/ReactToastify.css";
 import { toast, ToastContainer } from "react-toastify";
 import AuthContext from "../context/AuthContext";
 import CartContext from "../context/CartContext";
+import BuyContext from "../context/BuyContext";
 import React, { useMemo, useState } from "react";
 import jwtDecode from "jwt-decode";
 import { getToken, setToken, removeToken } from "../api/token";
 import { useEffect } from "react";
 import { useRouter } from "next/router";
-import { addProductCart, borrarProductoDelCarrito, countProductsCart, getProductsCart } from "../api/cart";
-
+import {
+  addProductCart,
+  borrarProductoDelCarrito,
+  countProductsCart,
+  getProductsCart,
+} from "../api/cart";
+import useBuy from "../hooks/useBuy";
+import { crearDetalleCompra, traspasarMetodoDespacho, traspasoData } from "../api/buy";
 
 export default function MyApp({ Component, pageProps }) {
   const [auth, setAuth] = useState(undefined);
   const [reloadUser, setReloadUser] = useState(false);
   const [totalProductsCart, setTotalProductsCart] = useState(0);
   const [reloadCart, setReloadCart] = useState(false);
+  const [orden, setOrden] = useState({});
 
   const router = useRouter();
 
@@ -37,10 +45,10 @@ export default function MyApp({ Component, pageProps }) {
     setReloadUser(false);
   }, [reloadUser]);
 
-	useEffect(() => {
-		setTotalProductsCart(countProductsCart())
-		setReloadCart(false)
-	}, [reloadCart, auth])
+  useEffect(() => {
+    setTotalProductsCart(countProductsCart());
+    setReloadCart(false);
+  }, [reloadCart, auth]);
 
   const login = (token) => {
     // console.log(token)
@@ -58,22 +66,53 @@ export default function MyApp({ Component, pageProps }) {
       router.push("/");
     }
   };
-// console.log(product)
+  // console.log(product)
   const addProduct = (product) => {
-		const token = getToken();
+    const token = getToken();
     if (token) {
-			addProductCart(product)
-			setReloadCart(true)
-    }else{
-			toast.warning("Para poder agregar un producto tienes que registrarte e iniciar sesión.")
-		}
+      addProductCart(product);
+      setReloadCart(true);
+    } else {
+      toast.warning(
+        "Para poder agregar un producto tienes que registrarte e iniciar sesión."
+      );
+    }
   };
 
-	const removeProduct = (product) => {
-		borrarProductoDelCarrito(product)
-		setReloadCart(true)
-	}
+  const removeProduct = (product) => {
+    borrarProductoDelCarrito(product);
+    setReloadCart(true);
+  };
 
+  const agregarDetalle = (detalle) => {
+    const token = getToken();
+    if (token) {
+      // crearDetalleCompra(detalle);
+      let newData = traspasoData(detalle)
+      setOrden(newData)
+    } else {
+      toast.warning(
+        "Para poder agregar un producto tienes que registrarte e iniciar sesión."
+        );
+      }
+    };
+
+  const agregarMetodoDespacho = (metodo) => {
+    const token = getToken();
+    if (token) {
+      // crearDetalleCompra(detalle);
+      let newData = traspasarMetodoDespacho(metodo)
+      orden.metodoDespacho = newData
+      setOrden(orden)
+    } else {
+      toast.warning(
+        "Para poder agregar un producto tienes que registrarte e iniciar sesión."
+        );
+      }
+    };
+
+    console.log(orden)
+    
   // ESTE ES EL ESTADO QUE SE ACCEDE GLOBALMENTE DESDE CUALQUIER COMPONENTE
   const authData = useMemo(
     () => ({
@@ -96,22 +135,37 @@ export default function MyApp({ Component, pageProps }) {
     [totalProductsCart] //El useMemo se va a actualizar cuando el usuario cambie de valor
   );
 
+  const buyData = useMemo(
+    () => ({
+      cantidadProductosAComprar: 0,
+      totalCompra: 0,
+      productosAComprar: [],
+      metodoDeDespacho: "",
+      metodoCompra: "",
+      agregarDetalleCompra: (detalle) => agregarDetalle(detalle),
+      traspasoMetodoDespacho : (metodo) => agregarMetodoDespacho(metodo)
+    }),
+    [] //El useMemo se va a actualizar cuando el usuario cambie de valor
+  );
+
   if (auth === undefined) return null; // Si auth es === a undefined es porque aún está en proceso de ver si está logeado o no.
 
   return (
     <AuthContext.Provider value={authData}>
       <CartContext.Provider value={cartData}>
-        <Component {...pageProps} />
-        <ToastContainer
-          position="top-right"
-          autoClose={5000}
-          hideProgressBar
-          newestOnTopcloseOnClick
-          rtl={false}
-          pauseOnFocusLoss={false}
-          draggable
-          pauseOnHover
-        />
+        <BuyContext.Provider value={buyData}>
+          <Component {...pageProps} />
+          <ToastContainer
+            position="top-right"
+            autoClose={5000}
+            hideProgressBar
+            newestOnTopcloseOnClick
+            rtl={false}
+            pauseOnFocusLoss={false}
+            draggable
+            pauseOnHover
+          />
+        </BuyContext.Provider>
       </CartContext.Provider>
     </AuthContext.Provider>
   );

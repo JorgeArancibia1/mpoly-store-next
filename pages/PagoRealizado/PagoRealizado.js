@@ -1,9 +1,11 @@
 import Soporte from "../../components/Soporte/Soporte";
 import Header from "../../components/Header/Header";
 import Titulo from "../../components/Titulo/Titulo";
-import Button from "../../components/Button/Button"
+import { Button } from "semantic-ui-react";
+import { useRouter } from "next/router";
 
 const PagoRealizado = () => {
+  const router = useRouter();
   return (
 
     <div className="container-pago-realizado">
@@ -20,7 +22,7 @@ const PagoRealizado = () => {
         los productos volverán al stock de la tienda y se cancelará la compra. </h3>
         <h3>¡Muchas gracias por visitar nuestra tienda! </h3>
         <div className="boton-volver-a-inicio container-flex-center cfc">
-          <Button isButton>Volver al inicio</Button>
+          <Button onClick={()=> router.push("/")} color="blue">Volver al inicio</Button>
         </div>
       </section>
       <Soporte />
