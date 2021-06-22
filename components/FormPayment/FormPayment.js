@@ -4,7 +4,8 @@ import { Button } from "semantic-ui-react"
 import { CardElement, useElements, useStripe } from "@stripe/react-stripe-js"
 import useAuth from "../../hooks/useAuth"
 import { paymentCartApi } from "../../api/cart"
-import { TOKEN } from "../../utils/constans"
+import useBuy from "../../hooks/useBuy"
+import { size } from "lodash"
 
 
 const FormPayment = () => {
@@ -12,6 +13,11 @@ const FormPayment = () => {
   const stripe = useStripe()
   const elements = useElements()
   const {auth, logout} = useAuth();
+  const {productosAComprar, metodoDespacho, metodoCompra} = useBuy();
+  console.log("productos a comprar => ", productosAComprar)
+  console.log("metodo despacho => ", metodoDespacho)
+  console.log("metodo compra => ", metodoCompra)
+  console.log("auth id user => ", auth.idUser)
 
   const handleSubmit = async (event) =>{
     event.preventDefault()
@@ -26,9 +32,11 @@ const FormPayment = () => {
       }else{
         const response = await paymentCartApi(
           result.token,
-          products,
+          productosAComprar,
           auth.idUser,
-          logout
+          logout, 
+          metodoDespacho,
+          metodoCompra
         );
         if(size(response) > 0){
           toast.success("Pedido Completado.")

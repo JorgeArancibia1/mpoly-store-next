@@ -22,7 +22,7 @@ const Boxes = ({isMethod=false}) => {
   }
   const irAPagar = ()=> {
     traspasoMetodoPago("Tarjeta")
-    router.push("/Stripe")
+    router.push("/Pago")
     // agregar metodo de pago por stripe 
   }
   return (

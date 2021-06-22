@@ -54,9 +54,9 @@ export const borrarProductoDelCarrito =  (idProduct) => {
   }
 };
 
-export async function paymentCartApi(toke, products, idUSer, logout) {
+export async function paymentCartApi(token, products, idUser, logout, metodoDespacho, metodoCompra) {
   try {
-    const url = `${BASE_PATH}/detalle-compras`;
+    const url = `${BASE_PATH}/orders`;
     const params = {
       method: "POST",
       headers: {
@@ -65,7 +65,9 @@ export async function paymentCartApi(toke, products, idUSer, logout) {
       body: JSON.stringify({
         token,
         products,
-        idUSer
+        idUser,
+        metodoDespacho,
+        metodoCompra
       }),
     };
     const result = await authFetch(url, params, logout);
