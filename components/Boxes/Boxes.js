@@ -3,9 +3,9 @@ import useBuy from "../../hooks/useBuy";
 import BoxPago from "../BoxPago/BoxPago"
 
 const Boxes = ({isMethod=false}) => {
-  const {traspasoMetodoDespacho} = useBuy();
+  const {traspasoMetodoDespacho, traspasoMetodoPago} = useBuy();
   const router = useRouter();
-  
+
   const irALocal = ()=> {
     traspasoMetodoDespacho("Local")
     router.push("/RetiroLocalSeleccionado")
@@ -16,10 +16,12 @@ const Boxes = ({isMethod=false}) => {
     // aqui se debe agregar el metodo de pago de starken a la compra 
   }
   const irAinformacionDeTransferencia = ()=> {
+    traspasoMetodoPago("Transferencia")
     router.push("/PagoRealizado")
     // agregar metodo de pago por transferencia
   }
   const irAPagar = ()=> {
+    traspasoMetodoPago("Tarjeta")
     router.push("/Stripe")
     // agregar metodo de pago por stripe 
   }

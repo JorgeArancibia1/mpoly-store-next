@@ -17,14 +17,13 @@ import {
   getProductsCart,
 } from "../api/cart";
 import useBuy from "../hooks/useBuy";
-import { crearDetalleCompra, traspasarMetodoDespacho, traspasoData } from "../api/buy";
+import { crearDetalleCompra, traspasarMetodoDespacho, traspasarMetodoPago, traspasoData } from "../api/buy";
 
 export default function MyApp({ Component, pageProps }) {
   const [auth, setAuth] = useState(undefined);
   const [reloadUser, setReloadUser] = useState(false);
   const [totalProductsCart, setTotalProductsCart] = useState(0);
   const [reloadCart, setReloadCart] = useState(false);
-  const [orden, setOrden] = useState({});
 
   const router = useRouter();
 
@@ -87,9 +86,11 @@ export default function MyApp({ Component, pageProps }) {
   const agregarDetalle = (detalle) => {
     const token = getToken();
     if (token) {
-      // crearDetalleCompra(detalle);
-      let newData = traspasoData(detalle)
-      setOrden(newData)
+      const {cantidadProductosComprados, productosAComprar, totalCompra} = detalle
+      buyData.totalCompra = totalCompra
+      buyData.productosAComprar = productosAComprar
+      buyData.cantidadProductosAComprar = cantidadProductosComprados
+      console.log("buy Data => ", buyData)
     } else {
       toast.warning(
         "Para poder agregar un producto tienes que registrarte e iniciar sesión."
@@ -100,10 +101,7 @@ export default function MyApp({ Component, pageProps }) {
   const agregarMetodoDespacho = (metodo) => {
     const token = getToken();
     if (token) {
-      // crearDetalleCompra(detalle);
-      let newData = traspasarMetodoDespacho(metodo)
-      orden.metodoDespacho = newData
-      setOrden(orden)
+      buyData.metodoDespacho = metodo
     } else {
       toast.warning(
         "Para poder agregar un producto tienes que registrarte e iniciar sesión."
@@ -111,7 +109,18 @@ export default function MyApp({ Component, pageProps }) {
       }
     };
 
-    console.log(orden)
+  const agregarMetodoPago = (metodo) => {
+    const token = getToken();
+    if (token) {
+      
+      buyData.metodoCompra = metodo
+    } else {
+      toast.warning(
+        "Para poder agregar un producto tienes que registrarte e iniciar sesión."
+        );
+      }
+    };
+
     
   // ESTE ES EL ESTADO QUE SE ACCEDE GLOBALMENTE DESDE CUALQUIER COMPONENTE
   const authData = useMemo(
@@ -140,20 +149,22 @@ export default function MyApp({ Component, pageProps }) {
       cantidadProductosAComprar: 0,
       totalCompra: 0,
       productosAComprar: [],
-      metodoDeDespacho: "",
+      metodoDespacho: "",
       metodoCompra: "",
       agregarDetalleCompra: (detalle) => agregarDetalle(detalle),
-      traspasoMetodoDespacho : (metodo) => agregarMetodoDespacho(metodo)
+      traspasoMetodoDespacho : (metodo) => agregarMetodoDespacho(metodo),
+      traspasoMetodoPago : (metodo) => agregarMetodoPago(metodo)
     }),
     [] //El useMemo se va a actualizar cuando el usuario cambie de valor
   );
+  console.log(buyData)
 
   if (auth === undefined) return null; // Si auth es === a undefined es porque aún está en proceso de ver si está logeado o no.
 
   return (
     <AuthContext.Provider value={authData}>
-      <CartContext.Provider value={cartData}>
         <BuyContext.Provider value={buyData}>
+      <CartContext.Provider value={cartData}>
           <Component {...pageProps} />
           <ToastContainer
             position="top-right"
@@ -165,8 +176,8 @@ export default function MyApp({ Component, pageProps }) {
             draggable
             pauseOnHover
           />
-        </BuyContext.Provider>
       </CartContext.Provider>
+        </BuyContext.Provider>
     </AuthContext.Provider>
   );
 }

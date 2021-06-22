@@ -4,10 +4,11 @@ const CartContext = createContext({
   cantidadProductosAComprar: 0,
   totalCompra: 0,
   productosAComprar: [],
-  metodoDeDespacho: "",
+  metodoDespacho: "",
   metodoCompra: "",
   agregarDetalleCompra: () => {},
-  traspasoMetodoDespacho : () => {}
+  traspasoMetodoDespacho : () => {},
+  traspasoMetodoPago : () => {}
 });
 
 export default CartContext;

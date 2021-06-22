@@ -41,4 +41,8 @@ export const traspasoData = (detalle) => {
 export const traspasarMetodoDespacho = (metodo) => {
   return metodo
   }
+
+export const traspasarMetodoPago = (metodo) => {
+  return metodo
+  }
   
