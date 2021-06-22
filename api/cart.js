@@ -1,6 +1,7 @@
 import { includes, size, remove } from "lodash";
 import { toast } from "react-toastify";
-import { CART } from "../utils/constans";
+import { BASE_PATH, CART } from "../utils/constans";
+import { authFetch } from "../utils/fetch";
 
 export const getProductsCart =  () => {
   const cart = localStorage.getItem(CART);
@@ -52,3 +53,26 @@ export const borrarProductoDelCarrito =  (idProduct) => {
     localStorage.removeItem(CART)
   }
 };
+
+export async function paymentCartApi(toke, products, idUSer, logout) {
+  try {
+    const url = `${BASE_PATH}/detalle-compras`;
+    const params = {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        token,
+        products,
+        idUSer
+      }),
+    };
+    const result = await authFetch(url, params, logout);
+    return result;
+  } catch (error) {
+    console.log(error);
+    return null;
+  }
+};
+
