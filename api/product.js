@@ -10,7 +10,7 @@ export const getLastProducts = async(limit, tipo) => {
   try {
     const response = await fetch(url);
     const result = await response.json();
-    console.log ("resultadoProductos => ", result)
+    // console.log ("resultadoProductos => ", result)
     return result;
   } catch (error) {
     console.error(`Ha ocurrido un error al traer los últimos productos: ${error}`)
@@ -40,12 +40,14 @@ export const obtenerProductosSegunTipo = async(limit, tipo) => {
   }
 }
 
-export const crearProducto = async(producto, logout) => {
-  console.log("resultCrearProduct => ", producto)
-  console.log("LogoutCrearProducto => ", logout)
+export const crearProducto = async(producto, logout, categoria, tipo) => {
+  console.log(categoria)
+  // console.log("resultCrearProduct => ", producto)
+  // console.log("LogoutCrearProducto => ", logout)
   producto.estado = "Disponible"
+  producto.categoria = categoria
+  producto.tipo = tipo
   console.log("result2 => ", producto)
-
   try {
     const url = `${BASE_PATH}/products`;
     const params = {
@@ -56,7 +58,7 @@ export const crearProducto = async(producto, logout) => {
       body: JSON.stringify(producto),
     };
     const result = await authFetch(url, params, logout);
-    console.log("resultProduct => ", result)
+    // console.log("resultProduct => ", result)
     // if (result.statusCode !== 200) throw "Error al crear producto";
     return result;
   } catch (error) {
@@ -65,12 +67,19 @@ export const crearProducto = async(producto, logout) => {
   }
 }
 
-export const editarProducto = async(idProduct, producto, logout) => {
-  console.log("idEditarProduct => ", idProduct)
-  console.log("resultEditarProducto => ", producto)
-  console.log("resultLogoutProduct => ", logout)
-  producto.estado = "Disponible"
+export const editarProducto = async(idProduct, producto, logout, categoria, tipo) => {
+  // console.log("idEditarProduct => ", idProduct)
+  // console.log("resultEditarProducto => ", producto)
+  // console.log("resultLogoutProduct => ", logout)
 
+  console.log(categoria, tipo)
+  producto.estado = "Disponible"
+  if(categoria){
+    producto.categoria = categoria
+  }
+  if(tipo){
+    producto.tipo = tipo
+  }
   try {
     const url = `${BASE_PATH}/products/${idProduct}`;
     const params = {
@@ -91,7 +100,7 @@ export const editarProducto = async(idProduct, producto, logout) => {
 }
 
 export const borrarProducto = async(idProduct, logout) => {
-  console.log("resultProduct => ", idProduct)
+  // console.log("resultProduct => ", idProduct)
 
   try {
     const url = `${BASE_PATH}/products/${idProduct}`;
@@ -103,7 +112,7 @@ export const borrarProducto = async(idProduct, logout) => {
       // body: JSON.stringify(producto),
     };
     const result = await authFetch(url, params, logout);
-    console.log("resultProduct => ", result)
+    // console.log("resultProduct => ", result)
     // if (result.statusCode !== 200) throw "Error al crear producto";
     return result;
 
@@ -123,7 +132,7 @@ export const obtenerVentasPorFecha = async(limit, tipo) => {
   try {
     const response = await fetch(url);
     const result = await response.json();
-    console.log ("resultadoProductos => ", result)
+    // console.log ("resultadoProductos => ", result)
     return result;
   } catch (error) {
     console.error(`Ha ocurrido un error al traer los últimos productos: ${error}`)
@@ -142,7 +151,7 @@ export const obtenerVendidosPorFecha = async(limit, fechaVenta, categoria ) => {
   try {
     const response = await fetch(url);
     const result = await response.json();
-    console.log ("resultadoProductos => ", result)
+    // console.log ("resultadoProductos => ", result)
     return result;
   } catch (error) {
     console.error(`Ha ocurrido un error al traer los últimos productos: ${error}`)
@@ -158,7 +167,7 @@ export const obtenerVendidos = async(limit ) => {
   try {
     const response = await fetch(url);
     const result = await response.json();
-    console.log ("resultadoProductos => ", result)
+    // console.log ("resultadoProductos => ", result)
     return result;
   } catch (error) {
     console.error(`Ha ocurrido un error al traer los últimos productos: ${error}`)
@@ -182,7 +191,7 @@ export const searchProducts = async(title ) => {
 export const obtenerProductoPorId = async(idProduct) => {
   // const limitItems = `_limit=${limit}`;
   // const sortItems = "_sort=createdAt:desc";
-  console.log(idProduct)
+  // console.log(idProduct)
   const filter = `id=${idProduct}`
   const url = `${BASE_PATH}/products?${filter}`;
   try {
@@ -204,7 +213,7 @@ export const obtenerPendientes = async(limit ) => {
   try {
     const response = await fetch(url);
     const result = await response.json();
-    console.log ("resultadoProductos => ", result)
+    // console.log ("resultadoProductos => ", result)
     return result;
   } catch (error) {
     console.error(`Ha ocurrido un error al traer los productos pendientes: ${error}`)
@@ -213,7 +222,7 @@ export const obtenerPendientes = async(limit ) => {
 }
 
 export const confirmarProducto = async(idProduct, logout) => {
-  console.log("resultProduct => ", idProduct)
+  // console.log("resultProduct => ", idProduct)
 
   try {
     const url = `${BASE_PATH}/products/${idProduct}`;
@@ -225,7 +234,7 @@ export const confirmarProducto = async(idProduct, logout) => {
       body: JSON.stringify({estado: "Vendido"}),
     };
     const result = await authFetch(url, params, logout);
-    console.log("resultProduct => ", result)
+    // console.log("resultProduct => ", result)
     // if (result.statusCode !== 200) throw "Error al crear producto";
     return result;
 
@@ -237,7 +246,7 @@ export const confirmarProducto = async(idProduct, logout) => {
 }
 
 export const marcarProductoComoDisponible = async(idProduct, logout) => {
-  console.log("resultProduct => ", idProduct)
+  // console.log("resultProduct => ", idProduct)
 
   try {
     const url = `${BASE_PATH}/products/${idProduct}`;
@@ -249,7 +258,7 @@ export const marcarProductoComoDisponible = async(idProduct, logout) => {
       body: JSON.stringify({estado: "Disponible"}),
     };
     const result = await authFetch(url, params, logout);
-    console.log("resultProduct => ", result)
+    // console.log("resultProduct => ", result)
     // if (result.statusCode !== 200) throw "Error al crear producto";
     return result;
 
@@ -261,7 +270,7 @@ export const marcarProductoComoDisponible = async(idProduct, logout) => {
 }
 
 export const marcarProductoComoVendido = async(idProduct, logout) => {
-  console.log("resultProduct => ", idProduct)
+  // console.log("resultProduct => ", idProduct)
 
   try {
     const url = `${BASE_PATH}/products/${idProduct}`;
@@ -273,7 +282,7 @@ export const marcarProductoComoVendido = async(idProduct, logout) => {
       body: JSON.stringify({estado: "Vendido"}),
     };
     const result = await authFetch(url, params, logout);
-    console.log("resultProduct => ", result)
+    // console.log("resultProduct => ", result)
     // if (result.statusCode !== 200) throw "Error al crear producto";
     return result;
 
