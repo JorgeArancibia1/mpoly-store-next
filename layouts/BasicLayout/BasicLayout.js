@@ -20,7 +20,7 @@ const BasicLayout = ({children}) => {
 
   return (
     <div className="basic-layout">
-      <Header nameUser={ user?.name || '' } />
+      <Header nameUser={ user?.name || '' } isAdmin={user?.nivel? true:false} />
       <div className="container-children">
         { children }
       </div>

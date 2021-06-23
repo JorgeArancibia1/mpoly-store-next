@@ -5,7 +5,8 @@ import { CardElement, useElements, useStripe } from "@stripe/react-stripe-js"
 import useAuth from "../../hooks/useAuth"
 import { paymentCartApi } from "../../api/cart"
 import useBuy from "../../hooks/useBuy"
-import { size } from "lodash"
+import { forEach, size } from "lodash"
+import { marcarProductoComoVendido } from "../../api/product"
 
 
 const FormPayment = () => {
@@ -39,6 +40,9 @@ const FormPayment = () => {
           metodoCompra
         );
         if(size(response) > 0){
+          forEach(productosAComprar, (product) => {
+            marcarProductoComoVendido(product.id, logout)
+          });
           toast.success("Pedido Completado.")
         }else{
           toast.error("Error al completar el pedido.")

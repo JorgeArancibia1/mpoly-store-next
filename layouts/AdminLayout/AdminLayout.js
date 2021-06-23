@@ -23,14 +23,14 @@ const AdminLayout = ({ children }) => {
 
 	if (user === undefined) return null;
 
-	if (!auth) {
+	if (!auth || user.nivel !== "Admin") {
 		router.replace("/");
 		return null;
 	}
 
 	return (
 		<div className="basic-layout">
-			<Header />
+			<Header isAdmin={user.nivel} />
 			{/* <Navbar /> */}
 			<section className="section-container-box-admin hv-100-header d-flex cfc">
 				<Sidebar />

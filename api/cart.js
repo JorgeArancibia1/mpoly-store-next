@@ -31,6 +31,50 @@ export const addProductCart =  (idProduct) => {
   }
 };
 
+export const setPendingProduct =  async(idProduct, logout) => {
+  try {
+    const url = `${BASE_PATH}/products/${idProduct}`;
+    const params = {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({estado: "Pendiente"}),
+    };
+    const result = await authFetch(url, params, logout);
+    console.log("resultProduct => ", result)
+    // if (result.statusCode !== 200) throw "Error al crear producto";
+    return result;
+
+
+  } catch (error) {
+    console.error(`Ha ocurrido un error al colocar un producto como pendiente.${error}`)
+    return null;
+  }
+};
+
+export const setProductoDisponible =  async(idProduct, logout) => {
+  try {
+    const url = `${BASE_PATH}/products/${idProduct}`;
+    const params = {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({estado: "Disponible"}),
+    };
+    const result = await authFetch(url, params, logout);
+    console.log("resultProduct => ", result)
+    // if (result.statusCode !== 200) throw "Error al crear producto";
+    return result;
+
+
+  } catch (error) {
+    console.error(`Ha ocurrido un error al colocar un producto como disponible.${error}`)
+    return null;
+  }
+};
+
 export const countProductsCart =  () => {
   const cart = getProductsCart();
 
@@ -71,9 +115,10 @@ export async function paymentCartApi(token, products, idUser, logout, metodoDesp
       }),
     };
     const result = await authFetch(url, params, logout);
+    console.log(result)
     return result;
   } catch (error) {
-    console.log(error);
+    console.log("no se pudo realizar el pago", error);
     return null;
   }
 };

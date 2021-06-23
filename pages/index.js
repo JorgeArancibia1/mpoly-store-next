@@ -72,9 +72,6 @@ const PantallaInicioCliente = () => {
 	const polerones = products?.filter(producto => producto.categoria.nombreCategoria.includes('Polerones') && producto.estado.includes('Disponible'))
 	const vestidos = products?.filter(producto => producto.categoria.nombreCategoria.includes('Vestidos') && producto.estado.includes('Disponible'))
 
-	// console.log('Poleras => ', poleras)
-	// console.log('Polerones => ', polerones)
-	// console.log('Vestidos => ', vestidos)
 
 	return (
 		<BasicLayout>

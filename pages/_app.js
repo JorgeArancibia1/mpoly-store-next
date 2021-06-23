@@ -15,6 +15,8 @@ import {
   borrarProductoDelCarrito,
   countProductsCart,
   getProductsCart,
+  setPendingProduct,
+  setProductoDisponible,
 } from "../api/cart";
 import useBuy from "../hooks/useBuy";
 import { crearDetalleCompra, traspasarMetodoDespacho, traspasarMetodoPago, traspasoData } from "../api/buy";
@@ -27,7 +29,7 @@ export default function MyApp({ Component, pageProps }) {
 
   const router = useRouter();
 
-  // console.log(auth);
+  console.log("user => ", auth);
 
   // ESTO OBTIENE EL TOKEN DEL LOCALSTORAGE SI ES QUE EXISTE, LUEGO SETEA EN EL ESTADO "auth" EL TOKEN Y EL TOKEN COMO SI FUERA EL ID DEL USUARIO.
   useEffect(() => {
@@ -69,6 +71,7 @@ export default function MyApp({ Component, pageProps }) {
   const addProduct = (product) => {
     const token = getToken();
     if (token) {
+      setPendingProduct(product, logout)
       addProductCart(product);
       setReloadCart(true);
     } else {
@@ -79,6 +82,7 @@ export default function MyApp({ Component, pageProps }) {
   };
 
   const removeProduct = (product) => {
+    setProductoDisponible(product, logout);
     borrarProductoDelCarrito(product);
     setReloadCart(true);
   };
@@ -129,6 +133,7 @@ export default function MyApp({ Component, pageProps }) {
       login,
       logout,
       setReloadUser,
+      rol: ""
     }),
     [auth] //El useMemo se va a actualizar cuando el usuario cambie de valor
   );

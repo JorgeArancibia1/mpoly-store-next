@@ -259,3 +259,27 @@ export const marcarProductoComoDisponible = async(idProduct, logout) => {
     return null;
   }
 }
+
+export const marcarProductoComoVendido = async(idProduct, logout) => {
+  console.log("resultProduct => ", idProduct)
+
+  try {
+    const url = `${BASE_PATH}/products/${idProduct}`;
+    const params = {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({estado: "Vendido"}),
+    };
+    const result = await authFetch(url, params, logout);
+    console.log("resultProduct => ", result)
+    // if (result.statusCode !== 200) throw "Error al crear producto";
+    return result;
+
+
+  } catch (error) {
+    console.error(`Ha ocurrido un error al marcar un producto como vendido.${error}`)
+    return null;
+  }
+}
