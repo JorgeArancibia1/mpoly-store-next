@@ -6,7 +6,10 @@ const Detalle = (
     nombre="polera",
     talla="XL",
     tipo="Hombre",
-    precio="5.990" 
+    precio="5.990",
+    marca="Sin marca",
+    agregar,
+    id="" 
   }
 ) => {
   return (
@@ -27,7 +30,7 @@ const Detalle = (
         <p className="precio-detalle mb-5">${precio}</p>
       </div>
       <div className=" w-100 w-100 mt-3">
-        <Button variant="outlined" size="small">
+        <Button onClick={() => agregar(id)} variant="outlined" size="small">
           Agregar producto al carrito
         </Button>
       </div>

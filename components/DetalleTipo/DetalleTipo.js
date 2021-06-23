@@ -26,7 +26,7 @@ const DetalleTipo = ({ titulo="PRODUCTOS", productos}) => {
       
           {
             size(productos) > 0 && map(productos,(producto) => {
-              return <Card key={producto.id} imagen={producto.imagen} iconito={iconcitoLink}/>
+              return <Card key={producto.id} imagen={producto.imagen} iconito={iconcitoLink} idProduct={producto.id}/>
             })
           }
         </div>

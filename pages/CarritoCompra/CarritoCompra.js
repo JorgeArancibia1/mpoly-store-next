@@ -17,6 +17,7 @@ const CarritoCompra = ({
   const { getProductsCart } = useCart();
   const {agregarDetalleCompra} = useBuy();
   const products = getProductsCart();
+  console.log("products => ", products);
   const [productsData, setproductsData] = useState([]);
   const [reloadCart, setReloadCart] = useState(false);
   const [totalPrice, setTotalPrice] = useState(0);
@@ -28,7 +29,7 @@ const CarritoCompra = ({
     (async () => {
       const productsTemp = [];
       for await (const product of products) {
-        // console.log("product => ", product);
+        console.log("product => ", product);
         const data = await obtenerProductoPorId(product);
         productsTemp.push(data);
       }
@@ -76,8 +77,7 @@ const CarritoCompra = ({
           <>
             <Titulo titulo="Carrito de compras" />
             {productsData.map((product) => {
-              const { id, imagen, nombre, marca, talla, precio, tipo } =
-                product[0];
+              const { id, imagen, nombre, marca, talla, precio, tipo } = product[0];
               return (
                 <CarritoItem
 									setReloadCart={setReloadCart}

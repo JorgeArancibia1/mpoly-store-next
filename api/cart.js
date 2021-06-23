@@ -42,12 +42,16 @@ export const setPendingProduct =  async(idProduct, logout) => {
       body: JSON.stringify({estado: "Pendiente"}),
     };
     const result = await authFetch(url, params, logout);
+    console.log(url, params, logout)
     console.log("resultProduct => ", result)
     // if (result.statusCode !== 200) throw "Error al crear producto";
     return result;
 
 
   } catch (error) {
+    if(idProduct === undefined){
+      console.error(`El id del producto viene undefined.${error}`)
+    }
     console.error(`Ha ocurrido un error al colocar un producto como pendiente.${error}`)
     return null;
   }
