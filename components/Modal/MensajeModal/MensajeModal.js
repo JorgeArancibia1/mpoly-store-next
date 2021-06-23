@@ -1,40 +1,69 @@
-import { Button } from 'semantic-ui-react';
-import { borrarProducto } from '../../../api/product'; 
+import { Button } from "semantic-ui-react";
+import { borrarProducto, confirmarProducto, marcarProductoComoDisponible } from "../../../api/product";
 import { toast } from "react-toastify";
-import useAuth from '../../../hooks/useAuth';
-import { useState } from 'react';
-import { useRouter } from 'next/router';
-
+import useAuth from "../../../hooks/useAuth";
+import { useState } from "react";
+import { useRouter } from "next/router";
 
 export const MensajeModal = ({
-  mensaje="¿Seguro que desea borrar?",
+  mensaje = "¿Seguro que desea borrar?",
   onCloseDelete,
-  row
+  row,
+  isConfirm = false,
+  isEditable = false,
+  isDelete = false
 }) => {
-	const { logout } = useAuth();
-	const [loading, setLoading] = useState(false);
-	const router = useRouter();
-  
+  const { logout } = useAuth();
+  const [loading, setLoading] = useState(false);
+  const router = useRouter();
 
-  const si = async() => {
-    console.log(row)
-    setLoading(true)
-    const response = await borrarProducto(row.id,logout)
-    setLoading(false)
-    console.log(response)
-    if (!response) {
-      toast.error("Error al borrar");
-    } else if (response.statusCode === 403) {
-      toast.error("No tiene los permisos para poder borrar")
-    } else {
-      toast.success("Producto borrado")
+  const si = async () => {
+    if (isEditable) {
+      console.log(row);
+      setLoading(true);
+      const response = await borrarProducto(row.id, logout);
+      setLoading(false);
+      console.log(response);
+      if (!response) {
+        toast.error("Error al borrar");
+      } else if (response.statusCode === 403) {
+        toast.error("No tiene los permisos para poder borrar");
+      } else {
+        toast.success("Producto borrado");
+      }
+      console.log(row.id);
+  
+    } else if(isConfirm){
+      setLoading(true);
+      const response = await confirmarProducto(row.id, logout);
+      setLoading(false);
+      console.log(response);
+      if (!response) {
+        toast.error("Error al confirmar");
+      } else if (response.statusCode === 403) {
+        toast.error("No tiene los permisos para poder confirmar");
+      } else {
+        toast.success("Producto vendido");
+      }
+    } else if(isDelete){
+      setLoading(true);
+      const response = await marcarProductoComoDisponible(row.id, logout);
+      setLoading(false);
+      console.log(response);
+      if (!response) {
+        toast.error("Error al borrar");
+      } else if (response.statusCode === 403) {
+        toast.error("No tiene los permisos para poder borrar");
+      } else {
+        toast.success("Producto borrado");
+      }
     }
-    console.log(row.id)
-    router.reload(window.location.pathname)
-  }
+    router.reload(window.location.pathname);
+  };
+
   return (
     <div className="container-modal">
-      <p >{mensaje}</p>
+      <p>{mensaje}</p>
       <Button variant="contained" color="blue" onClick={si} loading={loading}>
         Si
       </Button>
@@ -42,7 +71,7 @@ export const MensajeModal = ({
         No
       </Button>
     </div>
-  )
-}
+  );
+};
 
 export default MensajeModal;

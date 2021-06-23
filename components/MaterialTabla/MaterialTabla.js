@@ -29,16 +29,24 @@ const MaterialTabla = ({
 	iconButton2 = "edit",
 	textoFlotante = "Borrar",
 	isEditable = false,
-	funcion = (event, rowData) =>
-		alert("Has seleccionado => " + rowData.producto),
+	isConfirm = false,
 	abrirDelete,
 	abrirModal,
+	abrirModalConfirm,
 	setShowModal,
 	mostrar,
 	mostrarDelete,
+	mostrarConfirm,
+	mostrarDeleteOrder,
+	setShowModalConfirm,
 	setShowModalDelete,
 	row,
-	onCloseDelete
+	onCloseDelete,
+	abrirDeleteOrder,
+	onCloseDeleteOrder,
+	setShowModalDeleteOrder,
+	onCloseModalConfirm
+
 }) => {
 	console.log("rowtabla",row)
 	// Este es el boton de eliminar de la tabla
@@ -46,7 +54,7 @@ const MaterialTabla = ({
     {
 		icon: iconButton, // Icono Borrar
 		tooltip: textoFlotante, // Texto que aparece al pasar por encima
-		onClick: abrirDelete, // Funcion que ejecuta
+		onClick: isConfirm?abrirModalConfirm : abrirDelete, // Funcion que ejecuta
 	  },
 ];
 
@@ -56,6 +64,13 @@ isEditable && objectActions.push({
   tooltip: "Editar", // Texto que aparece al pasar por encima
   onClick: abrirModal, // Funcion que ejecuta
 })
+
+isConfirm && objectActions.push({
+  icon: iconButton2 , // Icono Editar
+  tooltip: "Borrar", // Texto que aparece al pasar por encima
+  onClick: abrirDeleteOrder, // Funcion que ejecuta
+})
+
 
 	return (
 		<div>
@@ -79,6 +94,12 @@ isEditable && objectActions.push({
       </BasicModal>
 			<BasicModal show={mostrarDelete} setShowModal={setShowModalDelete} title="Borrar producto" size="small">
 				<MensajeModal row={row} onCloseDelete={onCloseDelete} mensaje="¿Seguro que desea borrar este producto?" isEditable />
+      </BasicModal>
+			<BasicModal show={mostrarDeleteOrder} setShowModal={setShowModalDeleteOrder} title="Borrar producto" size="small">
+				<MensajeModal row={row} onCloseDelete={onCloseDeleteOrder} mensaje="¿Estas seguro que desea dejar este producto como disponible?, este producto aparecerá en los productos de la vista del cliente." isDelete />
+      </BasicModal>
+			<BasicModal show={mostrarConfirm} setShowModal={setShowModalConfirm} title="Confirmar producto" size="small">
+				<MensajeModal row={row} onCloseDelete={onCloseModalConfirm} mensaje="¿Estas seguro que desea confirmar la venta de este producto?" isConfirm />
       </BasicModal>
 		</div>
 	);

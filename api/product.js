@@ -195,3 +195,67 @@ export const obtenerProductoPorId = async(idProduct) => {
     return null;
   }
 }
+
+export const obtenerPendientes = async(limit ) => {
+  const limitItems = `_limit=${limit}`;
+  const sortItems = "_sort=createdAt:desc";
+  let filter1 = `estado=Pendiente`;
+  const url = `${BASE_PATH}/products?${limitItems}&${sortItems}&${filter1}`;
+  try {
+    const response = await fetch(url);
+    const result = await response.json();
+    console.log ("resultadoProductos => ", result)
+    return result;
+  } catch (error) {
+    console.error(`Ha ocurrido un error al traer los productos pendientes: ${error}`)
+    return null;
+  }  
+}
+
+export const confirmarProducto = async(idProduct, logout) => {
+  console.log("resultProduct => ", idProduct)
+
+  try {
+    const url = `${BASE_PATH}/products/${idProduct}`;
+    const params = {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({estado: "Vendido"}),
+    };
+    const result = await authFetch(url, params, logout);
+    console.log("resultProduct => ", result)
+    // if (result.statusCode !== 200) throw "Error al crear producto";
+    return result;
+
+
+  } catch (error) {
+    console.error(`Ha ocurrido un error al confirmar un producto.${error}`)
+    return null;
+  }
+}
+
+export const marcarProductoComoDisponible = async(idProduct, logout) => {
+  console.log("resultProduct => ", idProduct)
+
+  try {
+    const url = `${BASE_PATH}/products/${idProduct}`;
+    const params = {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({estado: "Disponible"}),
+    };
+    const result = await authFetch(url, params, logout);
+    console.log("resultProduct => ", result)
+    // if (result.statusCode !== 200) throw "Error al crear producto";
+    return result;
+
+
+  } catch (error) {
+    console.error(`Ha ocurrido un error al borrar un producto de la tabla gestion de compras.${error}`)
+    return null;
+  }
+}
