@@ -1,3 +1,4 @@
+import axios from "axios";
 import { BASE_PATH } from "../utils/constans";
 import { authFetch } from "../utils/fetch";
 
@@ -40,14 +41,59 @@ export const obtenerProductosSegunTipo = async(limit, tipo) => {
   }
 }
 
+export const upload = async(files, refId="idProduct",logout, ) => {
+console.log(files)
+  let upload = {
+    files: files,
+    refId,
+    field: "img",
+    ref: "Product"
+  }
+  console.log(upload)
+
+  const fd = new FormData()
+  // formData.append("files", files)
+  // formData.files = files
+  // formData.append('ref', 'Product')
+  // formData.ref = "Product"
+  // formData.append('refId', refId)
+  // formData.refId = refId
+  // formData.append('field', 'img')
+  // formData.field = "img"
+
+  console.log(fd)
+  
+  try {
+    const url = `${BASE_PATH}/upload`;
+    const params = {
+      method: "POST",
+      headers: {
+        "Content-Type": "multipart/form-data; boundary=l3iPy71otz",
+      },
+      body: JSON.stringify(files),
+    };
+    const result = await axios({method: "post", url, fd, headers: {'Content-Type': 'multipart/form-data'}})
+    .then(({ data }) => {
+      console.log(data);
+      console.log("Succesfully uploaded: ", JSON.stringify(data));
+    })
+    .catch((error) => {
+      console.log("Error: ", error.message);
+    });
+    return result;
+  } catch (error) {
+    console.error(`Ha ocurrido un error al crear la imagen del producto.${error}`)
+    return null;
+  }
+}
+
 export const crearProducto = async(producto, logout, categoria, tipo) => {
-  console.log(categoria)
-  // console.log("resultCrearProduct => ", producto)
-  // console.log("LogoutCrearProducto => ", logout)
   producto.estado = "Disponible"
   producto.categoria = categoria
   producto.tipo = tipo
+  // producto.img = producto.img.result
   console.log("result2 => ", producto)
+  
   try {
     const url = `${BASE_PATH}/products`;
     const params = {

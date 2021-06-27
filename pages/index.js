@@ -68,9 +68,9 @@ const PantallaInicioCliente = () => {
 		})()
 	}, [])
 
-	const poleras = products?.filter(producto => producto.categoria.nombreCategoria.includes('Poleras') && producto.estado.includes('Disponible'))
-	const polerones = products?.filter(producto => producto.categoria.nombreCategoria.includes('Polerones') && producto.estado.includes('Disponible'))
-	const vestidos = products?.filter(producto => producto.categoria.nombreCategoria.includes('Vestidos') && producto.estado.includes('Disponible'))
+	const poleras = products?.filter(producto => producto?.categoria?.nombreCategoria.includes('Poleras') && producto.estado.includes('Disponible'))
+	const polerones = products?.filter(producto => producto?.categoria?.nombreCategoria.includes('Polerones') && producto.estado.includes('Disponible'))
+	const vestidos = products?.filter(producto => producto?.categoria?.nombreCategoria.includes('Vestidos') && producto.estado.includes('Disponible'))
 
 
 	return (

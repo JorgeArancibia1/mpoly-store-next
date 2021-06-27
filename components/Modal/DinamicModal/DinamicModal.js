@@ -4,16 +4,19 @@ import { useFormik } from "formik";
 import * as Yup from "yup";
 import { toast } from "react-toastify";
 import { useState } from "react";
-import { crearProducto, editarProducto } from "../../../api/product";
+import { crearProducto, editarProducto, upload } from "../../../api/product";
 import useAuth from "../../../hooks/useAuth";
 import { useRef } from "react";
 
 const DinamicModal = ({ isEditable = false, row }) => {
   const { logout } = useAuth();
-  console.log("dinamicRow =>", row);
+  // console.log("dinamicRow =>", row);
   const [loading, setLoading] = useState(false);
+  const [file, setFile] = useState(null);
   const elementRef = useRef();
 
+  console.log(elementRef)
+  
   const categoriaOpciones = [
     {
       key: "Poleras",
@@ -90,14 +93,26 @@ const DinamicModal = ({ isEditable = false, row }) => {
       }
     } else {
       // Crear
+      console.log(file)
       console.log("formData2 => ", formData);
+
+      
+
       const response = await crearProducto(formData, logout, categoria, tipo);
+
+
+      const responseUpload = await upload(file, response.id, logout);
+
+      // const response = await crearProducto({...formData, img:file}, logout, categoria, tipo);
       console.log("dinamicRespons => ", response);
+      console.log("responseUpload => ", responseUpload);
       if (!response) {
         toast.error("Error al crear");
       } else if (response.statusCode === 403) {
         toast.error("No tiene los permisos para poder crear");
-      } else {
+      } else if (response.statusCode === 400) {
+        toast.error("No ingresó los datos correctamente");
+      } else if (response.id) {
         toast.success("Producto creado");
       }
     }
@@ -126,6 +141,7 @@ const DinamicModal = ({ isEditable = false, row }) => {
       console.log("categoria => ", categoria);
       // formData.categoria.nombreCategoria = categoria.nombreCategoria
       console.log("form data in submint => ", formData);
+      
       setLoading(true);
       isEditable
         ? switchFunction(formData, isEditable)
@@ -144,23 +160,26 @@ const DinamicModal = ({ isEditable = false, row }) => {
     setTipo(value);
   };
 
-  // console.log("categoriaout =>", categoria);
-  // console.log("elementRef =>", elementRef);
-  // console.log("elementRef =>", elementRef.files[0].name);
 
-  const subirImagen = (e) => {
-    console.log(e.target.files[0]);
-    let file = e.target.files[0];
-    let reader = new FileReader();
-    reader.onload = function (e) {
-      console.log(e.target.result);
-    };
-    reader.readAsText8(file);
+  // const fileChange = (e) => {
+  //   const _file = e.target.files
+  //   console.log(e.target.files)
+  //   const reader = new FileReader()
+    
+  //   reader.readAsText(_file[0])
+  //   setFile(reader)
+  // };
+
+  const fileChange = (e) => {
+    const _file = e.target.files[0]
+    console.log(e.target.files)
+    
+    setFile(_file)
   };
 
   return (
     <div>
-      <Form className="container-form" onSubmit={formik.handleSubmit}>
+      <Form className="container-form" onSubmit={formik.handleSubmit} encType="multipart/form-data">
         <Form.Group widths="equal">
           <Form.Input
             type="text"
@@ -248,31 +267,34 @@ const DinamicModal = ({ isEditable = false, row }) => {
             value={formik.values.precio}
             error={formik.errors.name}
           />
-          <Form.Input
+          {/* <Form.Input
             type="file"
             // onChange={fileChange}
-          />
+          /> */}
         </Form.Group>
         <div className="contenedor-boton w-100 d-flex jfb">
           <input
             ref={elementRef}
             type="file"
             hidden
-            // onChange={fileChange}
+            onChange={fileChange}
+            multiple={true}
+            accept="image/*"
+            name="file"
           />
 
           <div className="cfc">
-            <Button
+            {/* <Button
               content="Choose File"
               labelPosition="left"
               icon="file"
               onClick={() => elementRef.current.click()}
-            />
-            <PublishIcon fontSize="large" className="icono-contenedor" />
+            /> */}
+            <PublishIcon fontSize="large" className="icono-contenedor pointer" onClick={() => elementRef.current.click()}/>
             <p>Agregar Imagen</p>
           </div>
           <div className="cfc d-flex">
-            <Button type="submit" className="submit" loading={loading}>
+            <Button type="submit" className="submit" loading={loading} disabled={!file? true : false}>
               Aceptar
             </Button>
           </div>
