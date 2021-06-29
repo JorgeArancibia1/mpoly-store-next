@@ -9,7 +9,7 @@ const Intermedio = ({
 	abrirModal = false,
 	mostrar = false,
 	setShowModal,
-	isCreate = false,
+	isCreate = false
 }) => {
 	const router = useRouter();
 
@@ -29,7 +29,7 @@ const Intermedio = ({
 				title="Crear Producto"
 				size="small"
 			>
-				<DinamicModal />
+				<DinamicModal textoBoton="Crear producto" />
 			</BasicModal>
 		</div>
 	);

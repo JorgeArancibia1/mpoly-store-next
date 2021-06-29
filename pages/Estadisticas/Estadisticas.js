@@ -54,7 +54,7 @@ const Estadisticas = () => {
 				// enero = products[0][1].map((p)=>p.fechaVenta.toString().includes("2021-01"))
 				// enero = products[0][1].map((p)=>moment(p.fechaVenta))
 
-				const vendidos = await obtenerVendidos(50);
+				const vendidos = await obtenerVendidos(1000);
 				console.log(vendidos);
 
 				function dividirCadena(cadenaADividir, separador) {
@@ -70,7 +70,7 @@ const Estadisticas = () => {
 				}
 
 				const even = (fechaCompleta) => {
-					console.log(fechaCompleta)
+					console.log(fechaCompleta) // <==== undefined
 					let fechaCorta = dividirCadena(fechaCompleta,"-")
 					console.log(fechaCorta)
 					// fechaCompleta.includes("2021-01");
@@ -85,7 +85,7 @@ const Estadisticas = () => {
 					polerones: vendidos.filter((f) =>  f.categoria.nombreCategoria === "Polerones"),
 					vestidos: vendidos.filter((f) =>  f.categoria.nombreCategoria === "Vestidos"),
 				}
-				console.log(categoriasFiltro)
+				console.log("CategoriasFiltro => ",categoriasFiltro)
 
 				const fechas = [
 					// poleras 0

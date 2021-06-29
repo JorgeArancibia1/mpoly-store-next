@@ -4,18 +4,18 @@ import { useFormik } from "formik";
 import * as Yup from "yup";
 import { toast } from "react-toastify";
 import { useState } from "react";
-import { crearProducto, editarProducto, upload } from "../../../api/product";
+import { crearProducto, editarProducto, upload, uploadBinarie } from "../../../api/product";
 import useAuth from "../../../hooks/useAuth";
 import { useRef } from "react";
 
-const DinamicModal = ({ isEditable = false, row }) => {
+const DinamicModal = ({ isEditable = false, row, textoBoton }) => {
   const { logout } = useAuth();
   // console.log("dinamicRow =>", row);
   const [loading, setLoading] = useState(false);
   const [file, setFile] = useState(null);
   const elementRef = useRef();
 
-  console.log(elementRef)
+  // console.log(elementRef)
   
   const categoriaOpciones = [
     {
@@ -79,9 +79,7 @@ const DinamicModal = ({ isEditable = false, row }) => {
   const switchFunction = async (formData, isEditable = false) => {
     if (isEditable) {
       // Editar
-      // formData.categoria = categoria
-      // formData.tipo = tipo
-      
+
       const response = await editarProducto(row.id, formData, logout, categoria, tipo);
       console.log("dinamicRespons => ", response);
       if (!response) {
@@ -93,18 +91,12 @@ const DinamicModal = ({ isEditable = false, row }) => {
       }
     } else {
       // Crear
-      console.log(file)
-      console.log("formData2 => ", formData);
-
-      
 
       const response = await crearProducto(formData, logout, categoria, tipo);
 
+      const responseUpload = await upload(file, response.id);
 
-      const responseUpload = await upload(file, response.id, logout);
-
-      // const response = await crearProducto({...formData, img:file}, logout, categoria, tipo);
-      console.log("dinamicRespons => ", response);
+      // console.log("dinamicRespons => ", response);
       console.log("responseUpload => ", responseUpload);
       if (!response) {
         toast.error("Error al crear");
@@ -138,9 +130,9 @@ const DinamicModal = ({ isEditable = false, row }) => {
         },
     validationSchema: Yup.object(validationSchema()),
     onSubmit: async (formData, e) => {
-      console.log("categoria => ", categoria);
+      // console.log("categoria => ", categoria);
       // formData.categoria.nombreCategoria = categoria.nombreCategoria
-      console.log("form data in submint => ", formData);
+      // console.log("form data in submint => ", formData);
       
       setLoading(true);
       isEditable
@@ -152,8 +144,8 @@ const DinamicModal = ({ isEditable = false, row }) => {
 
   const handleChangeCategory = (e, { value }) => {
     setCategoria(value);
-    console.log("value =>", value);
-    console.log("categoria =>", categoria);
+    // console.log("value =>", value);
+    // console.log("categoria =>", categoria);
   };
 
   const handleChangeTipo = (e, { value }) => {
@@ -295,7 +287,7 @@ const DinamicModal = ({ isEditable = false, row }) => {
           </div>
           <div className="cfc d-flex">
             <Button type="submit" className="submit" loading={loading} disabled={!file? true : false}>
-              Aceptar
+              {textoBoton}
             </Button>
           </div>
         </div>

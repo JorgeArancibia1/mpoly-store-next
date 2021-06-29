@@ -90,7 +90,7 @@ isConfirm && objectActions.push({
 			/>
 			}
 			<BasicModal show={mostrar} setShowModal={setShowModal} title="Editar producto" size="small">
-				<DinamicModal isEditable row={row} />
+				<DinamicModal isEditable row={row} textoBoton="Editar producto" />
       </BasicModal>
 			<BasicModal show={mostrarDelete} setShowModal={setShowModalDelete} title="Borrar producto" size="small">
 				<MensajeModal row={row} onCloseDelete={onCloseDelete} mensaje="¿Seguro que desea borrar este producto?" isEditable />

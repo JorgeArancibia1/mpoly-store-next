@@ -6,7 +6,7 @@ export const validationSchema = () => {
     // lastname: Yup.string().required("El apellido es obligatorio"),
     lastname: Yup.string().required(true),
     lastname2: Yup.string().required(true),
-    email: Yup.string().email(true).required(false),
+    email: Yup.string().email(true).required(true),
     password: Yup.string().required(true),
     RUT: Yup.string().required(true),
     phoneNumber: Yup.number().required(true),

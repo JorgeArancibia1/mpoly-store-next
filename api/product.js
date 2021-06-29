@@ -41,38 +41,28 @@ export const obtenerProductosSegunTipo = async(limit, tipo) => {
   }
 }
 
-export const upload = async(files, refId="idProduct",logout, ) => {
-console.log(files)
-  let upload = {
-    files: files,
-    refId,
-    field: "img",
-    ref: "Product"
-  }
-  console.log(upload)
+export const upload = async(files, refId="idProduct" ) => {
 
-  const fd = new FormData()
-  // formData.append("files", files)
-  // formData.files = files
-  // formData.append('ref', 'Product')
-  // formData.ref = "Product"
-  // formData.append('refId', refId)
-  // formData.refId = refId
-  // formData.append('field', 'img')
-  // formData.field = "img"
+  console.log(files)
 
-  console.log(fd)
+  const formData = new FormData()
+  formData.append("files", files)
+
+  formData.append('ref', 'Product')
+  formData.append('refId', refId)
+  formData.append('field', 'img')
+
+  console.log(formData)
+  console.log(formData.get('files'))
   
   try {
     const url = `${BASE_PATH}/upload`;
-    const params = {
-      method: "POST",
-      headers: {
-        "Content-Type": "multipart/form-data; boundary=l3iPy71otz",
-      },
-      body: JSON.stringify(files),
-    };
-    const result = await axios({method: "post", url, fd, headers: {'Content-Type': 'multipart/form-data'}})
+    const result = await axios({
+      method: "post",
+      url,
+      data: formData,
+      headers: {'Content-Type': 'multipart/form-data'}
+    })
     .then(({ data }) => {
       console.log(data);
       console.log("Succesfully uploaded: ", JSON.stringify(data));
@@ -104,7 +94,7 @@ export const crearProducto = async(producto, logout, categoria, tipo) => {
       body: JSON.stringify(producto),
     };
     const result = await authFetch(url, params, logout);
-    // console.log("resultProduct => ", result)
+    console.log("resultProduct => ", result)
     // if (result.statusCode !== 200) throw "Error al crear producto";
     return result;
   } catch (error) {
