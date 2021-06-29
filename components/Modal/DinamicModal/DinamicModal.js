@@ -81,6 +81,8 @@ const DinamicModal = ({ isEditable = false, row, textoBoton }) => {
       // Editar
 
       const response = await editarProducto(row.id, formData, logout, categoria, tipo);
+      const responseUpload = await upload(file, response.id);
+
       console.log("dinamicRespons => ", response);
       if (!response) {
         toast.error("Error al actualizar");
