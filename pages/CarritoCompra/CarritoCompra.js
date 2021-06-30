@@ -28,12 +28,14 @@ const CarritoCompra = ({
   useEffect(() => {
     (async () => {
       const productsTemp = [];
-      for await (const product of products) {
-        console.log("product => ", product);
-        const data = await obtenerProductoPorId(product);
-        productsTemp.push(data);
+      if (products) {
+        for await (const product of products) {
+          console.log("product => ", product);
+          const data = await obtenerProductoPorId(product);
+          productsTemp.push(data);
+        }
+        setproductsData(productsTemp);
       }
-      setproductsData(productsTemp);
     })();
 		setReloadCart(false)
   }, [reloadCart]);
@@ -61,11 +63,13 @@ const CarritoCompra = ({
       cantidadProductosComprados,
       productosAComprar
     }
-    agregarDetalleCompra(detalleCarrito)
+    if (productosAComprar) {
+      agregarDetalleCompra(detalleCarrito)
+      router.push("/TipoCompra")
+    }
     // console.log(totalCompra)
     // console.log(cantidadProductosAComprar)
     // console.log(productosAComprar)
-    router.push("/TipoCompra")
   }
 
   return (
