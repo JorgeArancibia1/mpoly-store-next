@@ -24,7 +24,7 @@ const MaterialTabla = ({
 			type: "numeric",
 		},
 	],
-	subtitle = "Subtitulo",
+	subtitle = "",
 	iconButton = "delete",
 	iconButton2 = "edit",
 	textoFlotante = "Borrar",
