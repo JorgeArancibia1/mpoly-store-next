@@ -21,7 +21,7 @@ const Header = ({ nameUser = "Jorge Arancibia", isAdmin=false }) => {
 				</Link>
 			</div>
 			{
-				isAdmin && <Button type="buton" color="blue" onClick={()=> router.push("/ProductosVendidos")}>
+				isAdmin && <Button type="buton" color="blue" onClick={()=> router.push("/ProductosDisponibles")}>
 					ir al panel del administrador
 				</Button>
 			}

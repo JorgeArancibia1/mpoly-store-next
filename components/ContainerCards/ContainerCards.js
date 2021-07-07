@@ -21,7 +21,7 @@ const ContainerCards = ({ title, products }) => {
 					return (
 						<Card
 							key={producto.id}
-							imagen={producto.imagen}
+							imagen={producto.imagen || producto.img.url}
 							idProduct={producto.id}
 							nombre={producto.nombre}
 						/>

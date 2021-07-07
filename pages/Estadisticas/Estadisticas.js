@@ -80,7 +80,7 @@ const Estadisticas = () => {
 				const categoriasFiltro = {
 					poleras: vendidos.filter((f) => f.categoria.nombreCategoria === "Poleras"),
 					pantalones: vendidos.filter((f) => f.categoria.nombreCategoria === "Pantalones"),
-					Parkas:vendidos.filter((f) =>  f.categoria.nombreCategoria === "Parkas"),
+					parkas:vendidos.filter((f) =>  f.categoria.nombreCategoria === "Parkas"),
 					faldas: vendidos.filter((f) => f.categoria.nombreCategoria === "Faldas"),
 					polerones: vendidos.filter((f) =>  f.categoria.nombreCategoria === "Polerones"),
 					vestidos: vendidos.filter((f) =>  f.categoria.nombreCategoria === "Vestidos"),
